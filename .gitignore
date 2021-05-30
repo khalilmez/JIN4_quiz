@@ -1,0 +1,3 @@
+# Ignore directory used by Visual Studio for project generation
+build
+cmake-build-debug
