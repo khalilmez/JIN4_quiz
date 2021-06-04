@@ -15,17 +15,18 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(Width, Height), "Quiz");
     window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
-
+    /*Question */
     sf::Text question;
     sf::Font font;
+    char str[200];
+    strcpy(str, "Choisissez une forme");
     if (!font.loadFromFile("resources/Bernadette.ttf")) {
         cout << "Error"<<endl;
     }
 
     question.setFont(font);
 
-    question.setString("Quel est la forme qui a le plus de cotés ?");
-    cout << "¯\_( ͡° ͜ʖ ͡°)_/¯"<<endl;
+    question.setString("Quel est la forme qui a le plus de cotes ?");
     question.setCharacterSize(32); 
     question.setStyle(sf::Text::Bold);
     question.setFillColor(sf::Color::White);
@@ -34,10 +35,48 @@ int myMain()
         textRect.top + textRect.height / 2.0f);
     question.setPosition(sf::Vector2f(Width / 2.0f, 20.f));
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-    static char rep[128] = "";
+    /*affichage de X losqu'on a une mauvaise réponse*/
+    sf::RectangleShape line1(sf::Vector2f(25, 5));
+    line1.rotate(45); line1.setFillColor(sf::Color::Red);
+    sf::RectangleShape line2(sf::Vector2f(5, 25));
+    line2.rotate(45); line2.setFillColor(sf::Color::Red);
 
+    /*Cercle vert losqu'on a une bonne réponse*/
+    sf::CircleShape c(5);
+    c.setOutlineThickness(3);
+    c.setOutlineColor(sf::Color::Green);
+    c.setFillColor(sf::Color::Transparent);
+
+    /*forme 1*/
+    sf::CircleShape circle(50.f);
+    circle.setFillColor(sf::Color::Magenta);
+    circle.setOrigin(sf::Vector2f(0.f, 0.f));
+    circle.setPosition(sf::Vector2f(30 ,50.f));
+
+
+    /*forme 2*/
+    sf::RectangleShape rectangle;
+    rectangle.setSize(sf::Vector2f(50.f, 100.f));
+    rectangle.setFillColor(sf::Color::Yellow);
+    rectangle.setOrigin(sf::Vector2f(0.f, 0.f));
+    rectangle.setPosition(sf::Vector2f(Width-100, 70.f));
+    rectangle.rotate(90);
+
+    /*forme 3*/
+    sf::CircleShape poly1(50,3);
+    poly1.setOrigin(sf::Vector2f(0, 0));
+    poly1.setPosition(sf::Vector2f(Width - 180, 280));
+    poly1.setFillColor(sf::Color::Blue);
+    
+
+    /*forme 4*/
+    sf::CircleShape poly2(50, 8);
+    poly2.setOrigin(sf::Vector2f(0, 0));
+    poly2.setFillColor(sf::Color::Cyan);
+    poly2.setPosition(sf::Vector2f(30, 280.f));
+    
+    static char rep[128] = "";
+    bool reponse = true; bool won = false;
     sf::Clock deltaClock;
     while (window.isOpen()) {
         sf::Event event;
@@ -48,19 +87,61 @@ int myMain()
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                int x, y;
+                x = sf::Mouse::getPosition(window).x;
+                y = sf::Mouse::getPosition(window).y;
+                cout << "x = " << x << " y = " << y << endl;
+                if (x >= circle.getPosition().x && x <= (circle.getPosition().x+100) 
+                    && y >= circle.getPosition().y && y <= (circle.getPosition().y+100)) {
+                    strcpy(str, "BRAVO !");
+                    cout << "BRAVO !" << endl;
+                    reponse = true;
+                    won = true;
+                    c.setPosition(x, y);
+                }
+                else {
+                    if (!won) {
+                        strcpy(str, "Reessayez ! :(");
+                        cout << "Reessayez ! :(" << endl;
+                        line1.setPosition(x, y);
+                        line2.setPosition(x + 10, y);
+                        reponse = false;
+                    }
+                }
+            }
         }
 
+   
         ImGui::SFML::Update(window, deltaClock.restart());
-
         ImGui::Begin("Reponse :");
         ImGui::InputTextWithHint("Reponse", "Votre reponse", rep, IM_ARRAYSIZE(rep));
-        ImGui::Button("Save");
+        ImGui::Text(str);
+        
+        if (won) {
+          if (ImGui::Button("Next Level")) {
+              cout << "Bien recu" << endl;
+          }
+        }
         ImGui::End();
 
         window.clear();
 
         ImGui::SFML::Render(window);
+
         window.draw(question);
+        window.draw(circle);
+        window.draw(rectangle);
+        window.draw(poly1);
+        window.draw(poly2);
+        if (!reponse) {
+            window.draw(line1);
+            window.draw(line2);
+        }
+        if (reponse && won) {
+            window.draw(c);
+        }
         window.display();
     }
 
