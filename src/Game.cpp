@@ -3,6 +3,8 @@
 #include "Screen.h"
 #include "UpdateStrategy.h"
 #include "EventHandler.h"
+#include "Text.h"
+#include <iostream>
 
 void Game::init() {
 
@@ -18,7 +20,14 @@ void Game::init() {
 	/* Premier niveau */
 	auto level1 = std::make_unique<Screen>();
 
-	//level1->addElement(std::move(std::make))
+	sf::Font font;
+	if (!font.loadFromFile("resources/Bernadette.ttf")) {
+
+		std::cout << "Impossible de charger la police d'écriture." << std::endl;
+
+	}
+
+	level1->addElement(std::move(std::make_unique<Text>(10, 10, "goal", "Trouvez la forme avec le plus de côtés.", font, 32, sf::Color(200, 200, 200), sf::Text::Bold)));
 
 	levels.push_back(std::move(level1));
 
