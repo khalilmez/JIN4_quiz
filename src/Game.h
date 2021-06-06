@@ -2,7 +2,6 @@
 #include <map>
 #include <memory>
 #include <vector>
-//#include "Screen.h"
 
 class Screen;
 
@@ -17,7 +16,7 @@ public:
 	void init();
 
 	/* Permet de récupérer les menu associé à l'indentifiant 
-	* id dans Game::menus.
+	id dans Game::menus.
 	*/
 	Screen* getMenu(int id) const;
 

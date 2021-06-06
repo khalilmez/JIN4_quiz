@@ -49,7 +49,7 @@ private:
 
 	/* Le jeu auquel appartient le niveau.
 	*/
-	//Game* game;
+	Game* game;
 
 	/* Le gestionnaire d'événements utilisateur à 
 	utiliser pour l'écran

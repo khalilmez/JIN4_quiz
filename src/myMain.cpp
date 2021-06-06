@@ -15,7 +15,7 @@ int myMain() {
 
     /* Initialisation du jeu.
     */
-    Game game = Game();
+    Game game;
     game.init();
 
     /* Initialisation de l'écran 

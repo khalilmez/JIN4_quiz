@@ -11,10 +11,6 @@ void Game::init() {
 	/* Ne pas oublier d'ajouter l'écran qui s'affiche (écran d'erreur) quand un écran particulier n'est pas trouvé. */
 	/* Cet écran doit être associé à Menu::NOT_FOUND dans Game::menus.                                              */
 
-	auto errorScreen = std::make_unique<Screen>();
-	// Ajouter les éléments de l'écran d'erreur ici.
-	menus[Menu::NOT_FOUND] = move(errorScreen);
-	
 }
 
 Screen* Game::getMenu(int id) const { 
