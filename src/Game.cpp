@@ -11,6 +11,17 @@ void Game::init() {
 	/* Ne pas oublier d'ajouter l'écran qui s'affiche (écran d'erreur) quand un écran particulier n'est pas trouvé. */
 	/* Cet écran doit être associé à Menu::NOT_FOUND dans Game::menus.                                              */
 
+	auto errorScreen = std::make_unique<Screen>();
+	// Ajouter les éléments de l'écran d'erreur ici.
+	menus[Menu::NOT_FOUND] = std::move(errorScreen);
+
+	/* Premier niveau */
+	auto level1 = std::make_unique<Screen>();
+
+	//level1->addElement(std::move(std::make))
+
+	levels.push_back(std::move(level1));
+
 }
 
 Screen* Game::getMenu(int id) const { 
@@ -41,12 +52,12 @@ Screen* Game::getLevel(int id) const {
 
 void Game::addMenu(std::unique_ptr<Screen> menu) {
 
-	levels.push_back(move(menu));
+	levels.push_back(std::move(menu));
 
 }
 
 void Game::addLevel(std::unique_ptr<Screen> level) {
 
-	levels.push_back(move(level));
+	levels.push_back(std::move(level));
 
 }

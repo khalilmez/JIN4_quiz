@@ -8,8 +8,7 @@ void Screen::render(sf::RenderWindow &window) const {
 
 	for (auto &element : elements) {
 
-		element.render(window);
-		//((Element&)element).render(window);
+		element->render(window);
 
 	}
 
@@ -31,6 +30,6 @@ Screen* Screen::update() {
 
 void Screen::addElement(std::unique_ptr<Element> element) {
 
-	elements.push_back(move(element));
+	elements.push_back(std::move(element));
 
 }
