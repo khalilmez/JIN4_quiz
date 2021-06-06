@@ -1,152 +1,61 @@
 ﻿#include "myMain.h"
-#include <iostream>
-#include "imgui.h"
-#include <SFML/Graphics.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/Window/Event.hpp>
-#include "imgui-SFML.h"
+#include "Game.h"
+#include "Menu.h"
+#include "Screen.h"
+
+#define WIDTH 640
+#define HEIGHT 480
+#define APP_NAME "Quizzz"
 
 using namespace std;
 
-#define Width 640
-#define Height 480
+int myMain() {
 
-int myMain()
-{
-    sf::RenderWindow window(sf::VideoMode(Width, Height), "Quiz");
-    window.setFramerateLimit(60);
-    ImGui::SFML::Init(window);
-    /*Question */
-    sf::Text question;
-    sf::Font font;
-    char str[200];
-    strcpy(str, "Choisissez une forme");
-    if (!font.loadFromFile("resources/Bernadette.ttf")) {
-        cout << "Error"<<endl;
-    }
+    /* Initialisation du jeu.
+    */
+    Game game;
+    game.init();
 
-    question.setFont(font);
+    /* On récupère l'écran d'accueil du jeu.
+    */
+    Screen* screen = game.getMenu(Menu::LAUNCH);
 
-    question.setString("Quel est la forme qui a le plus de cotes ?");
-    question.setCharacterSize(32); 
-    question.setStyle(sf::Text::Bold);
-    question.setFillColor(sf::Color::White);
-    sf::FloatRect textRect = question.getLocalBounds();
-    question.setOrigin(textRect.left + textRect.width / 2.0f,
-        textRect.top + textRect.height / 2.0f);
-    question.setPosition(sf::Vector2f(Width / 2.0f, 20.f));
+    /* On crée la fenêtre d'affichage.
+    */
+    sf::RenderWindow window;
+    window.create(sf::VideoMode(WIDTH, HEIGHT), APP_NAME);
 
-    /*affichage de X losqu'on a une mauvaise réponse*/
-    sf::RectangleShape line1(sf::Vector2f(25, 5));
-    line1.rotate(45); line1.setFillColor(sf::Color::Red);
-    sf::RectangleShape line2(sf::Vector2f(5, 25));
-    line2.rotate(45); line2.setFillColor(sf::Color::Red);
+    /* Pour la gestion des événements.
+    */
+    sf::Event event;
 
-    /*Cercle vert losqu'on a une bonne réponse*/
-    sf::CircleShape c(5);
-    c.setOutlineThickness(3);
-    c.setOutlineColor(sf::Color::Green);
-    c.setFillColor(sf::Color::Transparent);
-
-    /*forme 1*/
-    sf::CircleShape circle(50.f);
-    circle.setFillColor(sf::Color::Magenta);
-    circle.setOrigin(sf::Vector2f(0.f, 0.f));
-    circle.setPosition(sf::Vector2f(30 ,50.f));
-
-
-    /*forme 2*/
-    sf::RectangleShape rectangle;
-    rectangle.setSize(sf::Vector2f(50.f, 100.f));
-    rectangle.setFillColor(sf::Color::Yellow);
-    rectangle.setOrigin(sf::Vector2f(0.f, 0.f));
-    rectangle.setPosition(sf::Vector2f(Width-100, 70.f));
-    rectangle.rotate(90);
-
-    /*forme 3*/
-    sf::CircleShape poly1(50,3);
-    poly1.setOrigin(sf::Vector2f(0, 0));
-    poly1.setPosition(sf::Vector2f(Width - 180, 280));
-    poly1.setFillColor(sf::Color::Blue);
-    
-
-    /*forme 4*/
-    sf::CircleShape poly2(50, 8);
-    poly2.setOrigin(sf::Vector2f(0, 0));
-    poly2.setFillColor(sf::Color::Cyan);
-    poly2.setPosition(sf::Vector2f(30, 280.f));
-    
-    static char rep[128] = "";
-    bool reponse = true; bool won = false;
-    sf::Clock deltaClock;
+    /* La boucle du jeu.
+    */
     while (window.isOpen()) {
-        sf::Event event;
+
+        /* L'affichage de l'écran courant.
+        */
+        screen->render(window);
+
+        /* Dépilage des événements utilisateur.
+        */
         while (window.pollEvent(event)) {
-            
-            ImGui::SFML::ProcessEvent(event);
 
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
+            /* Appel du gestionnaire d'événement de
+            l'écran courant sur les événements utilisateurs 
+            dépilés.
+            */
+            screen->handleEvent(event);
 
-            if (event.type == sf::Event::MouseButtonPressed) {
-                int x, y;
-                x = sf::Mouse::getPosition(window).x;
-                y = sf::Mouse::getPosition(window).y;
-                cout << "x = " << x << " y = " << y << endl;
-                if (x >= circle.getPosition().x && x <= (circle.getPosition().x+100) 
-                    && y >= circle.getPosition().y && y <= (circle.getPosition().y+100)) {
-                    strcpy(str, "BRAVO !");
-                    cout << "BRAVO !" << endl;
-                    reponse = true;
-                    won = true;
-                    c.setPosition(x, y);
-                }
-                else {
-                    if (!won) {
-                        strcpy(str, "Reessayez ! :(");
-                        cout << "Reessayez ! :(" << endl;
-                        line1.setPosition(x, y);
-                        line2.setPosition(x + 10, y);
-                        reponse = false;
-                    }
-                }
-            }
         }
 
-        ImGui::SFML::Update(window, deltaClock.restart());
-        ImGui::Begin("Reponse :");
-        ImGui::InputTextWithHint("Reponse", "Votre reponse", rep, IM_ARRAYSIZE(rep));
-        ImGui::Text(str);
-        
-        if (won) {
-          if (ImGui::Button("Next Level")) {
-              cout << "Bien recu" << endl;
-          }
-        }
-        ImGui::End();
+        /* Vérification de la condition de transition et 
+        mise-à-jour spontanée de l'écran courant.
+        */
+        screen = screen->update();
 
-        window.clear();
-
-        ImGui::SFML::Render(window);
-
-        window.draw(question);
-        window.draw(circle);
-        window.draw(rectangle);
-        window.draw(poly1);
-        window.draw(poly2);
-        if (!reponse) {
-            window.draw(line1);
-            window.draw(line2);
-        }
-        if (reponse && won) {
-            window.draw(c);
-        }
-        window.display();
     }
 
-    ImGui::SFML::Shutdown();
+    return 0;
 
-
-	return 0;
 }
