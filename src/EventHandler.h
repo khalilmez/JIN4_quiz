@@ -5,6 +5,6 @@ class EventHandler {
 
 public:
 
-	virtual void handle(Screen &screen, sf::Event &event) = 0;
+	virtual void handle(Screen &screen, const sf::Event &event) = 0;
 
 };

@@ -15,14 +15,14 @@ void Screen::render(sf::RenderWindow &window) const {
 
 }
 
-void Screen::handleEvent(sf::Event event) {
+void Screen::handleEvent(const sf::Event &event) {
 
-	eventHandler.handle(this, event);
+	eventHandler->handle(*this, event);
 
 }
 
 Screen* Screen::update() {
 
-	updateStrategy.update(*this);
+	updateStrategy->update(*this);
 
 }

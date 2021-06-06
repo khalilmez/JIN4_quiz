@@ -23,7 +23,7 @@ public:
 	l'interface EventHandler.
 	Cette stratégie est contenue dans Screen::eventHandler.
 	*/
-	void handleEvent(sf::Event);
+	void handleEvent(const sf::Event &event);
 
 	/* Gère les mises-à-jour "spontanées" (ne dépendant 
 	pas d'événements utilisateurs) de l'écran.
@@ -51,13 +51,13 @@ private:
 	utiliser pour l'écran
 	(cf. Screen::handleEvent(...)).
 	*/
-	EventHandler eventHandler;
+	std::unique_ptr<EventHandler> eventHandler;
 
 	/* La stratégie de mise-à-jour spontanée de 
 	l'écran 
 	(cf. Screen::update()).
 	*/
-	UpdateStrategy updateStrategy;
+	std::unique_ptr<UpdateStrategy> updateStrategy;
 
 	/* Les éléments constituant l'écran.
 	*/
