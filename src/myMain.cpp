@@ -113,7 +113,6 @@ int myMain()
             }
         }
 
-   
         ImGui::SFML::Update(window, deltaClock.restart());
         ImGui::Begin("Reponse :");
         ImGui::InputTextWithHint("Reponse", "Votre reponse", rep, IM_ARRAYSIZE(rep));
