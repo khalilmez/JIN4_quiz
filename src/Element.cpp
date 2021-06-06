@@ -1,16 +1,20 @@
 #include "Element.h"
 
-Element::Element(float x, float y, std::string name): x(x),y(y),name(name) {}
+Element::Element(float x, float y, std::string name): 
+	x{ x },
+	y{ y },
+	name{ name }
+{}
 
-float Element::get_X() const {
+float Element::getX() const {
 	return x;
 }
-float Element::get_Y() const {
+float Element::getY() const {
 	return y;
 }
-void Element::set_X(float X) {
+void Element::setX(float X) {
 	x = X;
 }
-void Element::set_Y(float Y) {
+void Element::setY(float Y) {
 	y = Y;
 }

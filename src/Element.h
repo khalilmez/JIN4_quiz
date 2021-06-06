@@ -2,20 +2,38 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <string>
 
-class Element
-{
+class Element {
+
+public:
+
+	Element(float x, float y, std::string name);
+	virtual ~Element() = default;
+
+	float getX() const;
+	float getY() const;
+	void setX(float X);
+	void setY(float Y);
+
+	/* Affiche l'élément.
+	*/
+	virtual void render(sf::RenderWindow& window) const = 0;
+
+	/* Permet de savoir si le point de coordonnées
+	(x, y, z) se trouve dans l'élément.
+	Pour les éléments 2D, la coordonnée z est inutile.
+	*/
+	virtual bool contains(const float x, const float y) const;
+
 protected:
+
+	/* Les coordonnées de l'élément.
+	*/
 	float x;
 	float y;
+
+	/* Le nom de l'élément.
+	*/
 	std::string name;
-	
-public:
-	Element(float x, float y, std::string name);
-	float get_X() const;
-	float get_Y() const;
-	void set_X(float X);
-	void set_Y(float Y);
-	virtual void render(sf::RenderWindow& window) = 0;
-	virtual ~Element() = default;
+
 };
 
