@@ -4,12 +4,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
-
 #include "imgui-SFML.h"
 
 using namespace std;
+
 #define Width 640
 #define Height 480
+
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(Width, Height), "Quiz");
