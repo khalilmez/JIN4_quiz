@@ -7,6 +7,7 @@ void Screen::render(sf::RenderWindow &window) const {
 	for (auto &element : elements) {
 
 		element.render(window);
+		//((Element&)element).render(window);
 
 	}
 
@@ -22,6 +23,6 @@ void Screen::handleEvent(sf::Event event) {
 
 Screen* Screen::update() {
 
-	updateStrategy.update(this);
+	updateStrategy.update(*this);
 
 }

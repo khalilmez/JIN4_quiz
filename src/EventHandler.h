@@ -1,8 +1,10 @@
 #pragma once
-
+#include "Screen.h"
 
 class EventHandler {
-private: 
-	virtual void handle() = 0;
+
+public:
+
+	virtual void handle(Screen &screen, sf::Event &event) = 0;
 
 };
