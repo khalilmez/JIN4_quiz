@@ -18,3 +18,7 @@ void Element::setX(float X) {
 void Element::setY(float Y) {
 	y = Y;
 }
+
+bool Element::contains(const float x, const float y) const {
+	/* Ne fait rien */
+}
