@@ -17,12 +17,12 @@ public:
 	/* Permet de récupérer les menu associé à l'indentifiant 
 	id dans Game::menus.
 	*/
-	Screen* getMenu(int id);
+	Screen* getMenu(int id) const;
 
 	/* Permet de récupérer le niveau d'indice id dans 
 	Game::levels (cf. commentaire sur Game::levels).
 	*/
-	Screen* getLevel(int id);
+	Screen* getLevel(int id) const;
 
 	/* Ajoute un menu au jeu.
 	* Utilisé dans la méthode Game::init().

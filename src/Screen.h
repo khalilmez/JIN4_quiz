@@ -14,7 +14,7 @@ public:
 	Element::render(...) de tous les éléments constituant 
 	l'écran.
 	*/
-	void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow& window) const;
 
 	/* Gère les événements utilisateur sur l'écran 
 	courant.
