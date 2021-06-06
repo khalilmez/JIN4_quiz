@@ -25,7 +25,8 @@ int myMain() {
 
     /* On récupère l'écran d'accueil du jeu.
     */
-    screen = game.getMenu(Menu::LAUNCH);
+    // screen = game.getMenu(Menu::LAUNCH);
+    screen = game.getLevel(0); // Modifié temporairement pour afficher le premier niveau directement au lieu de l'écran d'accueil.
 
     /* On crée la fenêtre d'affichage.
     */
@@ -47,6 +48,10 @@ int myMain() {
         /* Dépilage des événements utilisateur.
         */
         while (window.pollEvent(event)) {
+
+            /* Fermeture de la fenêtre du jeu. 
+            */
+            if (event.type == sf::Event::Closed) {window.close();}
 
             /* Appel du gestionnaire d'événement de
             l'écran courant sur les événements utilisateurs 

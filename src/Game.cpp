@@ -29,7 +29,7 @@ void Game::init() {
 	// Ajouter les éléments de l'écran d'erreur ici.
 	menus[Menu::NOT_FOUND] = std::move(errorScreen);
 
-	/* Premier niveau */
+	/* Niveau 1 */
 	auto level1 = std::make_unique<Screen>(
 		this, 
 		std::move(std::make_unique<Level1EventHandler>()),
@@ -44,9 +44,15 @@ void Game::init() {
 
 	}
 
-	level1->addElement(std::move(std::make_unique<Text>(10, 10, "goal", "Trouvez la forme avec le plus de côtés.", font, 32, sf::Color(200, 200, 200), sf::Text::Bold)));
+	level1->addElement(std::move(std::make_unique<Text>(10, 10, "goal", "Trouvez la forme avec le plus de faces.", font, 53, sf::Color(200, 200, 200), sf::Text::Bold)));
 
 	levels.push_back(std::move(level1));
+
+	/* Niveau 2 */
+
+	/* Niveau 3 */
+
+	/* ... */
 
 }
 
