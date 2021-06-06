@@ -2,23 +2,30 @@
 #include "Game.h"
 #include "Menu.h"
 #include "Screen.h"
+#include "UpdateStrategy.h"
+#include "EventHandler.h"
 
 #define WIDTH 640
 #define HEIGHT 480
 #define APP_NAME "Quizzz"
 
-using namespace std;
+// using namespace std;
 
 int myMain() {
 
     /* Initialisation du jeu.
     */
-    Game game;
+    Game game = Game();
     game.init();
+
+    /* Initialisation de l'écran 
+    courant.
+    */
+    Screen* screen;
 
     /* On récupère l'écran d'accueil du jeu.
     */
-    Screen* screen = game.getMenu(Menu::LAUNCH);
+    screen = game.getMenu(Menu::LAUNCH);
 
     /* On crée la fenêtre d'affichage.
     */

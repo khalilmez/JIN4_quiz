@@ -1,5 +1,8 @@
 #include "Game.h"
 #include "Menu.h"
+#include "Screen.h"
+#include "UpdateStrategy.h"
+#include "EventHandler.h"
 
 void Game::init() {
 

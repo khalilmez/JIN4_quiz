@@ -1,9 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Game.h"
+// #include "Game.h"
 #include "Element.h"
-#include "EventHandler.h"
-#include "UpdateStrategy.h"
+// #include "EventHandler.h"
+// #include "UpdateStrategy.h"
+
+class Game;
+class UpdateStrategy;
+class EventHandler;
 
 class Screen {
 
@@ -14,7 +18,7 @@ public:
 	Element::render(...) de tous les éléments constituant 
 	l'écran.
 	*/
-	void render(sf::RenderWindow& window) const;
+	void render(sf::RenderWindow &window) const;
 
 	/* Gère les événements utilisateur sur l'écran 
 	courant.
@@ -45,7 +49,7 @@ private:
 
 	/* Le jeu auquel appartient le niveau.
 	*/
-	Game* game;
+	//Game* game;
 
 	/* Le gestionnaire d'événements utilisateur à 
 	utiliser pour l'écran

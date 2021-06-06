@@ -1,11 +1,13 @@
 #pragma once
-#include "Screen.h"
+// #include "Screen.h"
+
+class Screen;
 
 class UpdateStrategy {
 
 public: 
 
 	virtual ~UpdateStrategy() = default;
-	virtual void update(Screen &screen) = 0;
+	virtual Screen* update(Screen &screen) = 0;
 
 };
