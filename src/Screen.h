@@ -45,6 +45,11 @@ public:
 	*/
 	Screen* update();
 
+	/* Permet d'ajouter des éléments à 
+	l'écran.
+	*/
+	void addElement(std::unique_ptr<Element> element);
+
 private:
 
 	/* Le jeu auquel appartient le niveau.
@@ -65,7 +70,7 @@ private:
 
 	/* Les éléments constituant l'écran.
 	*/
-	std::vector<Element> elements;
+	std::vector<std::unique_ptr<Element>> elements;
 
 	/* La couleur de fond de l'écran.
 	*/

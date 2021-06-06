@@ -28,3 +28,9 @@ Screen* Screen::update() {
 	return updateStrategy->update(*this);
 
 }
+
+void Screen::addElement(std::unique_ptr<Element> element) {
+
+	elements.push_back(move(element));
+
+}
