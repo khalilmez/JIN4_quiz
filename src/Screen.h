@@ -9,35 +9,35 @@ class Screen {
 
 public:
 
-	/* Affiche l'écran.
-	Cette méthode appelle successivement les méthodes 
-	Element::render(...) de tous les éléments constituant 
-	l'écran.
+	/* Affiche l'Ã©cran.
+	Cette mÃ©thode appelle successivement les mÃ©thodes 
+	Element::render(...) de tous les Ã©lÃ©ments constituant 
+	l'Ã©cran.
 	*/
 	void render(sf::RenderWindow& window) const;
 
-	/* Gère les événements utilisateur sur l'écran 
+	/* GÃ¨re les Ã©vÃ©nements utilisateur sur l'Ã©cran 
 	courant.
-	Comme chaque écran doit gérer ces événements différemment,
-	cette méthode utilise une stratégie héritant de 
+	Comme chaque Ã©cran doit gÃ©rer ces Ã©vÃ©nements diffÃ©remment,
+	cette mÃ©thode utilise une stratÃ©gie hÃ©ritant de 
 	l'interface EventHandler.
-	Cette stratégie est contenue dans Screen::eventHandler.
+	Cette stratÃ©gie est contenue dans Screen::eventHandler.
 	*/
 	void handleEvent(sf::Event);
 
-	/* Gère les mises-à-jour "spontanées" (ne dépendant 
-	pas d'événements utilisateurs) de l'écran.
-	Comme chaque écran possède des processus de mise-à-jour différents,
-	cette méthode utilise une stratégie héritant de
+	/* GÃ¨re les mises-Ã -jour "spontanÃ©es" (ne dÃ©pendant 
+	pas d'Ã©vÃ©nements utilisateurs) de l'Ã©cran.
+	Comme chaque Ã©cran possÃ¨de des processus de mise-Ã -jour diffÃ©rents,
+	cette mÃ©thode utilise une stratÃ©gie hÃ©ritant de
 	l'interface UpdateStrategy.
-	Cette stratégie est contenue dans Screen::updateStrategy.
-	Cette méthode teste également la condition de transition de 
-	l'écran courant vers son successeur ("condition de victoire"
+	Cette stratÃ©gie est contenue dans Screen::updateStrategy.
+	Cette mÃ©thode teste Ã©galement la condition de transition de 
+	l'Ã©cran courant vers son successeur ("condition de victoire"
 	pour les niveaux).
-	Dans le cas où cette condition est vérifiée, cette méthode 
-	renvoie un pointeur vers l'écran suivant.
-	Dans le cas contraire, elle renvoie un pointeur vers l'écran
-	sur laquelle elle est appelée.
+	Dans le cas oÃ¹ cette condition est vÃ©rifiÃ©e, cette mÃ©thode 
+	renvoie un pointeur vers l'Ã©cran suivant.
+	Dans le cas contraire, elle renvoie un pointeur vers l'Ã©cran
+	sur laquelle elle est appelÃ©e.
 	*/
 	Screen* update();
 
@@ -47,24 +47,25 @@ private:
 	*/
 	Game* game;
 
-	/* Le gestionnaire d'événements utilisateur à 
-	utiliser pour l'écran
+	/* Le gestionnaire d'Ã©vÃ©nements utilisateur Ã  
+	utiliser pour l'Ã©cran
 	(cf. Screen::handleEvent(...)).
 	*/
 	EventHandler eventHandler;
 
-	/* La stratégie de mise-à-jour spontanée de 
-	l'écran 
+	/* La stratÃ©gie de mise-Ã -jour spontanÃ©e de 
+	l'Ã©cran 
 	(cf. Screen::update()).
 	*/
 	UpdateStrategy updateStrategy;
 
-	/* Les éléments constituant l'écran.
+	/* Les Ã©lÃ©ments constituant l'Ã©cran.
 	*/
 	std::vector<Element> elements;
 
-	/* La couleur de fond de l'écran.
+	/* La couleur de fond de l'Ã©cran.
 	*/
 	sf::Color backgroundColor;
 
 };
+
