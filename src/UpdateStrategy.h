@@ -1,8 +1,9 @@
 #pragma once
 
-
 class UpdateStrategy {
-private: 
-	virtual void Update() = 0;
+
+public: 
+
+	virtual void update() = 0;
 
 };
