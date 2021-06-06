@@ -1,5 +1,14 @@
 #include "Text.h"
 
+Text::Text(float x, float y, std::string name, std::string content, sf::Font font, int characterSize, sf::Color color, sf::Text::Style style) :
+	Element{x, y, name},
+	content{content},
+	font{font},
+	size{characterSize},
+	color{color},
+	style{style}
+{}
+
 void Text::render(sf::RenderWindow &window) const {
 
 	sf::Text text;

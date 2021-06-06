@@ -9,6 +9,8 @@ class Text : public Element {
 
 public:
 
+	explicit Text(float x, float y, std::string name, std::string content, sf::Font font, int characterSize, sf::Color color, sf::Text::Style style);
+
 	void render(sf::RenderWindow& window) const override;
 
 private:
