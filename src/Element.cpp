@@ -21,4 +21,5 @@ void Element::setY(float Y) {
 
 bool Element::contains(const float x, const float y) const {
 	/* Ne fait rien */
+	return false;
 }

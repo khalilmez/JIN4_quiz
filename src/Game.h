@@ -2,7 +2,8 @@
 #include <map>
 #include <memory>
 #include <vector>
-#include "Screen.h"
+
+class Screen;
 
 class Game {
 
@@ -24,15 +25,17 @@ public:
 	*/
 	Screen* getLevel(int id) const;
 
+	void addMenu(std::unique_ptr<Screen> menu);
+
 	/* Ajoute un menu au jeu.
 	* Utilisé dans la méthode Game::init().
 	*/
-	void addMenu(std::unique_ptr<Screen> menu);
+	void addMenu(Screen* menu);
 
 	/* Ajoute un niveau au jeu.
 	* Utilisé dans la méthode Game::init().
 	*/
-	void addLevel(std::unique_ptr<Screen> level);
+	void addLevel(Screen* level);
 
 private:
 
@@ -40,7 +43,7 @@ private:
 	Les menus sont des écrans comme les 
 	niveaux.
 	*/
-	std::map<int, std::unique_ptr<Screen>> menus;
+	std::map<int, Screen*> menus;
 
 	/* Les niveaux du jeu.
 	Les niveaux sont des écrans.
@@ -49,7 +52,7 @@ private:
 	Ainsi, levels[0] correspond au premier niveau, levels[1] au deuxième,
 	et ainsi de suite.
 	*/
-	std::vector<std::unique_ptr<Screen>> levels;
+	std::vector<Screen*> levels;
 
 	/* L'indice du niveau courrant dans levels.
 	*/

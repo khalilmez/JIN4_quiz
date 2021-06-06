@@ -1,4 +1,6 @@
 #include "Screen.h"
+#include "EventHandler.h"
+#include "UpdateStrategy.h"
 
 void Screen::render(sf::RenderWindow &window) const {
 
@@ -25,4 +27,6 @@ Screen* Screen::update() {
 
 	updateStrategy->update(*this);
 
+	Screen* screen;
+	return screen;
 }

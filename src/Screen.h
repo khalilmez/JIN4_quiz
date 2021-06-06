@@ -2,8 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Element.h"
-#include "EventHandler.h"
-#include "UpdateStrategy.h"
+
+class EventHandler;
+
+class UpdateStrategy;
 
 class Screen {
 
@@ -51,13 +53,13 @@ private:
 	utiliser pour l'écran
 	(cf. Screen::handleEvent(...)).
 	*/
-	std::unique_ptr<EventHandler> eventHandler;
+	EventHandler* eventHandler;
 
 	/* La stratégie de mise-à-jour spontanée de 
 	l'écran 
 	(cf. Screen::update()).
 	*/
-	std::unique_ptr<UpdateStrategy> updateStrategy;
+	UpdateStrategy* updateStrategy;
 
 	/* Les éléments constituant l'écran.
 	*/
