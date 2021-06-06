@@ -2,6 +2,16 @@
 #include "UpdateStrategy.h"
 #include "EventHandler.h"
 
+Screen::Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor) :
+	game{game},
+	backgroundColor{backgroundColor}
+{
+
+	this->eventHandler = std::move(eventHandler);
+	this->updateStrategy = std::move(updateStrategy);
+
+}
+
 void Screen::render(sf::RenderWindow &window) const {
 
 	window.clear(backgroundColor);

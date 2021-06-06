@@ -13,6 +13,8 @@ class Screen {
 
 public:
 
+	Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor);
+
 	/* Affiche l'écran.
 	Cette méthode appelle successivement les méthodes 
 	Element::render(...) de tous les éléments constituant 
