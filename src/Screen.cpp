@@ -64,6 +64,24 @@ Element* Screen::getElement(int id) const {
 
 }
 
+int Screen::getNumberOfElements() const {
+
+	return elements.size();
+
+}
+
+bool Screen::isFailed() const {
+
+	return failed;
+
+}
+
+void Screen::setFailed(bool c) {
+
+	failed = c;
+
+}
+
 Game* Screen::getGame() const {
 
 	return game;

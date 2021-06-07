@@ -24,3 +24,17 @@ void Sprite::render(sf::RenderWindow& window) const {
 	window.draw(sprite);
 
 }
+
+bool Sprite::contains(const float x, const float y) const {
+
+	sf::Sprite sprite;
+
+	sprite.setPosition(x, y);
+
+	sprite.setTexture(texture);
+
+	sf::Rect<float> box = sprite.getGlobalBounds();
+
+	return box.contains(x, y);
+
+}

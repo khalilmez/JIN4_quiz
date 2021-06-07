@@ -13,15 +13,11 @@ void Level1EventHandler::handle(Screen& screen, const sf::Event& event, sf::Rend
             cout << "BRAVO !" << endl;
             screen.setCompleted(true);
         }
-        else if(screen.getElement(2)->contains(x, y)){
+        else if(screen.getElement(2)->contains(x, y) || screen.getElement(3)->contains(x, y) || screen.getElement(4)->contains(x, y)){
             cout << "Reessayez ! " << endl;
+            screen.setFailed(true);
         }
-        else if (screen.getElement(3)->contains(x, y)) {
-            cout << "Reessayez ! " << endl;
-        }
-        else if (screen.getElement(4)->contains(x, y)) {
-            cout << "Reessayez !" << endl;
-        }
+
     }
 
 }

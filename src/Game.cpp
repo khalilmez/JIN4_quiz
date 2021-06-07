@@ -9,7 +9,9 @@
 #include "Level1UpdateStrategy.h"
 #include "Circle.h"
 #include "Rectangle.h"
-
+#include "WinLoseEventHandler.h"
+#include "WinLoseUpdateStrategy.h"
+#include "Sprite.h"
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -34,6 +36,34 @@ void Game::init() {
 	// Ajouter les éléments de l'écran d'erreur ici.
 	menus[Menu::NOT_FOUND] = std::move(errorScreen);
 
+	/* Écran de victoire */
+	auto winScreen = std::make_unique<Screen>(
+		this,
+		std::move(std::make_unique<WinLoseEventHandler>()),
+		std::move(std::make_unique<WinLoseUpdateStrategy>()),
+		sf::Color()
+		);
+
+	winScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png")));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(160, 10, "text", "resources/win.png")));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/next.png")));
+
+	menus[Menu::WIN] = std::move(winScreen);
+
+	/* Écran de défaite */
+	auto loseScreen = std::make_unique<Screen>(
+		this,
+		std::move(std::make_unique<WinLoseEventHandler>()),
+		std::move(std::make_unique<WinLoseUpdateStrategy>()),
+		sf::Color()
+		);
+
+	loseScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png")));
+	loseScreen->addElement(std::move(std::make_unique<Sprite>(180, 10, "text", "resources/lose.png")));
+	loseScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/retry.png")));
+
+	menus[Menu::LOSE] = std::move(loseScreen);
+
 	/* Niveau 1 */
 	auto level1 = std::make_unique<Screen>(
 		this, 
@@ -52,6 +82,7 @@ void Game::init() {
 	level1->addElement(std::move(std::make_unique<Rectangle>(WIDTH - 100, 100, "Rectangle", 50,100, sf::Color::Yellow)));
 	level1->addElement(std::move(std::make_unique<Circle>(WIDTH - 100, 280, "Triangle", 50, sf::Color::Red,3)));
 	level1->addElement(std::move(std::make_unique<Circle>(30, 280, "octogone", 50, sf::Color::Red, 8)));
+
 	levels.push_back(std::move(level1));
 
 	/* Niveau 2 */

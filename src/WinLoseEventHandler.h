@@ -1,7 +1,7 @@
 #pragma once
 #include "EventHandler.h"
 
-class WinLoseMenuEventHandler : public EventHandler {
+class WinLoseEventHandler : public EventHandler {
 
 public:
 

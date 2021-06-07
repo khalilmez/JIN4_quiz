@@ -23,3 +23,9 @@ bool Element::contains(const float x, const float y) const {
 	/* Ne fait rien */
 	return false;
 }
+
+std::string Element::getName() const {
+
+	return name;
+
+}

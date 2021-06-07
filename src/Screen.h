@@ -54,9 +54,15 @@ public:
 
 	Element* getElement(int id) const;
 
+	int getNumberOfElements() const;
+
 	bool isCompleted() const;
 
 	void setCompleted(bool c);
+
+	bool isFailed() const;
+
+	void setFailed(bool c);
 
 	Game* getGame() const;
 
@@ -66,6 +72,12 @@ private:
 	suivant.
 	*/
 	bool completed = false;
+
+	/* Vaut true quand le joueur a épuisé toutes ses tentatives
+	pour le niveau courant.
+	Permet de savoir quand afficher l'écran de défaite.
+	*/
+	bool failed = false;
 
 	/* Le jeu auquel appartient le niveau.
 	*/

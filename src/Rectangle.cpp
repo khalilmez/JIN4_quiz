@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include <iostream>
+
 Rectangle::Rectangle(float x, float y, std::string name, float width, float length, sf::Color color) :
 	Element{ x, y, name },
 	color(color),

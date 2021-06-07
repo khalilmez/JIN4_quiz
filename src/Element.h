@@ -14,6 +14,8 @@ public:
 	void setX(float X);
 	void setY(float Y);
 
+	std::string getName() const;
+
 	/* Affiche l'élément.
 	*/
 	virtual void render(sf::RenderWindow& window) const = 0;
