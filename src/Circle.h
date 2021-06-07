@@ -1,12 +1,15 @@
 #pragma once
 #include "Element.h"
 #include <SFML/Graphics.hpp>
+#include <pugixml.hpp>
 
 /* Cette classe représente les éléments textuels d'un écran.
 */
 class Circle : public Element {
 
 public:
+
+	explicit Circle(pugi::xml_node &node);
 
 	explicit Circle(float x, float y, std::string name, float Radius , sf::Color color, int Nb);
 
