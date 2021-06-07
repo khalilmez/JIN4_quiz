@@ -1,6 +1,58 @@
 #include "Screen.h"
 #include "UpdateStrategy.h"
 #include "EventHandler.h"
+#include <pugixml.hpp>
+#include "Text.h"
+#include "Sprite.h"
+#include "Rectangle.h"
+#include "Circle.h"
+
+Screen::Screen(pugi::xml_node &node) :
+	backgroundColor{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() }
+{
+
+	if (node.attribute("event_handler").as_string() == "win_lose") {
+
+	}
+	else if (node.attribute("event_handler").as_string() == "level1") {
+
+	}
+	else { eventHandler = nullptr; }
+
+	if (node.attribute("update_strategy").as_string() == "win_lose") {
+
+	}
+	else if (node.attribute("update_strategy").as_string() == "level1") {
+
+	}
+	else { eventHandler = nullptr; }
+
+	for (const auto& child : node.children()) {
+
+		if(child.name() == "text") { 
+		
+			addElement(std::move(std::make_unique<Text>(child)));
+		
+		}
+		else if (child.name() == "sprite") {
+
+			addElement(std::move(std::make_unique<Sprite>(child)));
+
+		}
+		else if (child.name() == "rectangle") {
+
+			addElement(std::move(std::make_unique<Rectangle>(child)));
+
+		}
+		else if (child.name() == "circle") {
+
+			addElement(std::move(std::make_unique<Circle>(child)));
+
+		}
+
+	}
+
+}
 
 Screen::Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor) :
 	game{game},

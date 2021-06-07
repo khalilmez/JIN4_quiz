@@ -34,7 +34,7 @@ void Game::init() {
 
 	pugi::xml_node root = document.child("game");
 
-	for (pugi::xml_node child : root.children()) {
+	for (const auto &child : root.children()) {
 
 		if (child.name() == "menu") {
 
