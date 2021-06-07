@@ -6,6 +6,10 @@
 #include "Sprite.h"
 #include "Rectangle.h"
 #include "Circle.h"
+#include "WinLoseEventHandler.h"
+#include "WinLoseUpdateStrategy.h"
+#include "Level1EventHandler.h"
+#include "Level1UpdateStrategy.h"
 
 Screen::Screen(pugi::xml_node &node) :
 	backgroundColor{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() }
@@ -13,16 +17,24 @@ Screen::Screen(pugi::xml_node &node) :
 
 	if (node.attribute("event_handler").as_string() == "win_lose") {
 
+		eventHandler = std::move(std::make_unique<WinLoseEventHandler>());
+
 	}
 	else if (node.attribute("event_handler").as_string() == "level1") {
+
+		eventHandler = std::move(std::make_unique<Level1EventHandler>());
 
 	}
 	else { eventHandler = nullptr; }
 
 	if (node.attribute("update_strategy").as_string() == "win_lose") {
 
+		updateStrategy = std::move(std::make_unique<WinLoseUpdateStrategy>());
+
 	}
 	else if (node.attribute("update_strategy").as_string() == "level1") {
+
+		updateStrategy = std::move(std::make_unique<Level1UpdateStrategy>());
 
 	}
 	else { eventHandler = nullptr; }
