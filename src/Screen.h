@@ -4,7 +4,7 @@
 #include "Element.h"
 // #include "EventHandler.h"
 // #include "UpdateStrategy.h"
-
+#include "ImGuiWindow.h"
 class Game;
 class UpdateStrategy;
 class EventHandler;
@@ -20,7 +20,7 @@ public:
 	Element::render(...) de tous les éléments constituant 
 	l'écran.
 	*/
-	void render(sf::RenderWindow &window) const;
+	void render(sf::RenderWindow &window);
 
 	/* Gère les événements utilisateur sur l'écran 
 	courant.
@@ -61,7 +61,7 @@ public:
 	Game* getGame() const;
 
 private:
-
+	sf::Clock deltaClock;
 	/* Booléen indiquant si on peut passer à l'écran/niveau 
 	suivant.
 	*/

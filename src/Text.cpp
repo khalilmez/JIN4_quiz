@@ -9,7 +9,7 @@ Text::Text(float x, float y, std::string name, std::string content, sf::Font fon
 	style{style}
 {}
 
-void Text::render(sf::RenderWindow &window) const {
+void Text::render(sf::RenderWindow &window) {
 
 	sf::Text text;
 

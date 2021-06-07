@@ -7,7 +7,7 @@ Rectangle::Rectangle(float x, float y, std::string name, float width, float leng
 	length(length)
 {}
 
-void Rectangle::render(sf::RenderWindow &window) const {
+void Rectangle::render(sf::RenderWindow &window) {
 	sf::RectangleShape rectangle;
 	rectangle.setSize(sf::Vector2f(width, length));
 	rectangle.setFillColor(color);

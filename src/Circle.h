@@ -12,7 +12,7 @@ public:
 
 	explicit Circle(float x, float y, std::string name, float Radius, sf::Color color);
 
-	void render(sf::RenderWindow& window) const override;
+	void render(sf::RenderWindow& window) override;
 
 	bool contains(const float x, const float y) const override;
 

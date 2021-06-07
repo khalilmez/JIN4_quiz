@@ -14,7 +14,7 @@ Radius(Radius)
 {
 }
 
-void Circle::render(sf::RenderWindow &window) const {
+void Circle::render(sf::RenderWindow &window) {
 	if (nb_Points <= 1) {
 		sf::CircleShape circle(Radius);
 		circle.setFillColor(color);

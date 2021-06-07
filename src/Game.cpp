@@ -7,9 +7,12 @@
 #include <iostream>
 #include "Level1EventHandler.h"
 #include "Level1UpdateStrategy.h"
+#include "Level2EventHandler.h"
+#include "Level2UpdateStrategy.h"
 #include "Circle.h"
 #include "Rectangle.h"
-
+#include "ImGuiWindowBuilder.h"
+#include "ImGuiWindow.h"
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -20,6 +23,10 @@ void Game::init() {
 	*/
 	currentLevel = 0;
 
+	ImGuiWindowBuilder imGuiBuilder;
+
+	auto imgui = imGuiBuilder.withTitle("Hellooo").withInputInt("Input").withButton("Save").build();
+	
 	/* Créer les niveaux, les menus, et les ajouter au jeu ici. */
 
 	/* Ne pas oublier d'ajouter l'écran qui s'affiche (écran d'erreur) quand un écran particulier n'est pas trouvé. */
@@ -52,10 +59,21 @@ void Game::init() {
 	level1->addElement(std::move(std::make_unique<Rectangle>(WIDTH - 100, 100, "Rectangle", 50,100, sf::Color::Yellow)));
 	level1->addElement(std::move(std::make_unique<Circle>(WIDTH - 100, 280, "Triangle", 50, sf::Color::Red,3)));
 	level1->addElement(std::move(std::make_unique<Circle>(30, 280, "octogone", 50, sf::Color::Red, 8)));
+	level1->addElement(std::move(std::make_unique<ImGuiWindow>(std::move(imgui))));
+
 	levels.push_back(std::move(level1));
 
 	/* Niveau 2 */
-
+	auto level2 = std::make_unique<Screen>(
+		this,
+		std::move(std::make_unique<Level2EventHandler>()),
+		std::move(std::make_unique<Level2UpdateStrategy>()),
+		sf::Color()
+		);
+	level2->addElement(std::move(std::make_unique<Text>(10, 10, "goal", "Formez un Rectangle.", font, 53, sf::Color(200, 200, 200), sf::Text::Bold)));
+	level2->addElement(std::move(std::make_unique<Rectangle>(250, 250, "Rectangle", 100, 100, sf::Color::Yellow)));
+	levels.push_back(std::move(level2));
+	
 	/* Niveau 3 */
 
 	/* ... */
