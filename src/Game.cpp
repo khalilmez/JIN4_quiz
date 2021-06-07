@@ -12,6 +12,7 @@
 #include "WinLoseEventHandler.h"
 #include "WinLoseUpdateStrategy.h"
 #include "Sprite.h"
+#include <pugixml.hpp>
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -21,6 +22,37 @@ void Game::init() {
 	à 0 (premier niveau).
 	*/
 	currentLevel = 0;
+
+	pugi::xml_document document;
+	pugi::xml_parse_result result = document.load_file("setup.xml");
+	if (!result) {
+
+		std::cout << "Error while loading XML file.\n";
+		return;
+
+	}
+
+	pugi::xml_node root = document.child("game");
+
+	for (pugi::xml_node child : root.children()) {
+
+		if (child.name() == "menu") {
+
+			auto menu = std::make_unique<Screen>(child);
+			
+			if (child.attribute("type").as_string() == "win") { menus[Menu::WIN] = std::move(menu); }
+			else if (child.attribute("type").as_string() == "lose") { menus[Menu::LOSE] = std::move(menu); }
+			else if (child.attribute("type").as_string() == "launch") { menus[Menu::LAUNCH] = std::move(menu); }
+			else { menus[Menu::NOT_FOUND] = std::move(menu); }
+
+		}
+		else if (child.name() == "level") {
+
+			levels.push_back(std::move(std::make_unique<Screen>(child)));
+
+		}
+
+	}
 
 	/* Créer les niveaux, les menus, et les ajouter au jeu ici. */
 
