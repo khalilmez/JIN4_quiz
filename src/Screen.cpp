@@ -26,9 +26,9 @@ void Screen::render(sf::RenderWindow &window) const {
 
 }
 
-void Screen::handleEvent(const sf::Event &event) {
+void Screen::handleEvent(const sf::Event &event, sf::RenderWindow &window) {
 
-	eventHandler->handle(*this, event);
+	eventHandler->handle(*this, event, window);
 
 }
 

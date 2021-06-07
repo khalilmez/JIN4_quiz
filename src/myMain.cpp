@@ -57,7 +57,7 @@ int myMain() {
             l'écran courant sur les événements utilisateurs 
             dépilés.
             */
-            screen->handleEvent(event);
+            screen->handleEvent(event, window);
 
         }
 
