@@ -28,7 +28,6 @@ void Game::init() {
 	if (!result) {
 
 		std::cout << "Error while loading XML file.\n";
-		return;
 
 	}
 

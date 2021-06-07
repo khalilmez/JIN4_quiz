@@ -1,1 +1,11 @@
 <?xml version="1.0"?>
+<!-- Fichier de création des niveaux et menus du jeu -->
+<!--
+<game>
+    <menu type="win" event_handler="win_lose" update_strategy="win_lose" r="0", g="0", b="0">
+        <sprite x="0" y="0" name="background" file="resources/stripes.png">
+    </menu>
+    <menu type="lose" event_handler="win_lose" update_strategy="win_lose" r="0", g="0", b="0">
+    </menu>
+</game>
+-->
