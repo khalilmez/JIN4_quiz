@@ -39,7 +39,7 @@ Screen::Screen(pugi::xml_node &node) :
 	}
 	else { eventHandler = nullptr; }
 
-	for (const auto& child : node.children()) {
+	for (auto& child : node.children()) {
 
 		if(child.name() == "text") { 
 		

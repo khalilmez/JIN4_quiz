@@ -4,6 +4,7 @@
 #include "Element.h"
 // #include "EventHandler.h"
 // #include "UpdateStrategy.h"
+#include <pugixml.hpp>
 
 class Game;
 class UpdateStrategy;
