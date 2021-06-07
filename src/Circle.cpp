@@ -4,9 +4,15 @@
 Circle::Circle(pugi::xml_node &node) :
 	Element{ node.attribute("x").as_float(), node.attribute("y").as_float(), node.attribute("name").as_string() },
 	color{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() },
-	Radius{ node.attribute("radius").as_float() },
-	nb_Points{ node.attribute("nb_sides").as_int() }
-{}
+	Radius{ node.attribute("radius").as_float() }
+{
+
+	auto temp = node.attribute("nb_sides");
+
+	if (temp) { nb_Points = temp.as_int(); }
+	else { nb_Points = 300; }
+
+}
 
 Circle::Circle(float x, float y, std::string name, float Radius, sf::Color color, int Nb) :
 	Element{ x, y, name },
