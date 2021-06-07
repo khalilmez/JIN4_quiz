@@ -29,7 +29,7 @@ public:
 	l'interface EventHandler.
 	Cette stratégie est contenue dans Screen::eventHandler.
 	*/
-	void handleEvent(const sf::Event &event);
+	void handleEvent(const sf::Event &event, sf::RenderWindow &window);
 
 	/* Gère les mises-à-jour "spontanées" (ne dépendant 
 	pas d'événements utilisateurs) de l'écran.
@@ -52,23 +52,31 @@ public:
 	*/
 	void addElement(std::unique_ptr<Element> element);
 
-private:
-
-	/* Le jeu auquel appartient le niveau.
-	*/
-	Game* game;
-
-	/* Le gestionnaire d'événements utilisateur à 
+	std::vector<std::unique_ptr<Element>> get_Elements() {
+		return elements;
+	}
+	/* Le gestionnaire d'événements utilisateur à
 	utiliser pour l'écran
 	(cf. Screen::handleEvent(...)).
 	*/
 	std::unique_ptr<EventHandler> eventHandler;
 
-	/* La stratégie de mise-à-jour spontanée de 
-	l'écran 
+	/* La stratégie de mise-à-jour spontanée de
+	l'écran
 	(cf. Screen::update()).
 	*/
 	std::unique_ptr<UpdateStrategy> updateStrategy;
+
+	bool isCompleted() const;
+
+	void setCompleted(bool c);
+
+private:
+	bool completed = false;
+
+	/* Le jeu auquel appartient le niveau.
+	*/
+	Game* game;
 
 	/* Les éléments constituant l'écran.
 	*/

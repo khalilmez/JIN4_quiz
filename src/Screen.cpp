@@ -26,9 +26,9 @@ void Screen::render(sf::RenderWindow &window) const {
 
 }
 
-void Screen::handleEvent(const sf::Event &event) {
+void Screen::handleEvent(const sf::Event &event, sf::RenderWindow &window) {
 
-	eventHandler->handle(*this, event);
+	eventHandler->handle(*this, event, window);
 
 }
 
@@ -42,4 +42,12 @@ void Screen::addElement(std::unique_ptr<Element> element) {
 
 	elements.push_back(std::move(element));
 
+}
+
+bool Screen::isCompleted() const {
+	return completed;
+}
+
+void Screen::setCompleted(bool c) {
+	completed = c;
 }

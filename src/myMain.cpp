@@ -4,6 +4,7 @@
 #include "Screen.h"
 #include "UpdateStrategy.h"
 #include "EventHandler.h"
+#include "Level1EventHandler.h"
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -27,6 +28,8 @@ int myMain() {
     */
     // screen = game.getMenu(Menu::LAUNCH);
     screen = game.getLevel(0); // Modifié temporairement pour afficher le premier niveau directement au lieu de l'écran d'accueil.
+    
+    screen->eventHandler = std::make_unique<Level1EventHandler>();
 
     /* On crée la fenêtre d'affichage.
     */
@@ -57,7 +60,7 @@ int myMain() {
             l'écran courant sur les événements utilisateurs 
             dépilés.
             */
-            screen->handleEvent(event);
+            screen->handleEvent(event,window);
 
         }
 

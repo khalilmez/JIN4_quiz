@@ -2,9 +2,9 @@
 #include <string>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "Element.h"
 
-class ImGuiWindow
-{
+class ImGuiWindow : public Element{
 private :
 	std::string title;
 	std::string content;
