@@ -5,6 +5,8 @@
 Screen* WinLoseUpdateStrategy::update(Screen& screen) {
 
 	if(screen.isCompleted()) {
+
+		screen.setCompleted(false);
 	
 		return screen.getGame()->getCurrentLevel();
 	
