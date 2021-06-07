@@ -1,6 +1,6 @@
 #include "Element.h"
 
-Element::Element(float x, float y, std::string name): 
+Element::Element(float x, float y, std::string name) :
 	x{ x },
 	y{ y },
 	name{ name }
@@ -22,4 +22,10 @@ void Element::setY(float Y) {
 bool Element::contains(const float x, const float y) const {
 	/* Ne fait rien */
 	return false;
+}
+
+std::string Element::getName() const {
+
+	return name;
+
 }

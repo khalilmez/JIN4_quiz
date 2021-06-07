@@ -12,10 +12,10 @@ Screen* Level2UpdateStrategy::update(Screen &screen) {
 		/* On incrémente l'indice du niveau courant.
 		Le niveau courant devient le successeur de l'ancien niveau courant.
 		*/
-		//screen.getGame()->nextLevel();
+		screen.getGame()->nextLevel();
 
 		/* On retourne un poiteur vers le nouveau niveau courant (le niveau suivant). */
-		//return screen.getGame()->getCurrentLevel();
+		return screen.getGame()->getCurrentLevel();
 
 	}
 

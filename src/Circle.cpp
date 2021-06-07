@@ -7,14 +7,14 @@ Circle::Circle(float x, float y, std::string name, float Radius, sf::Color color
 	nb_Points(Nb)
 {}
 
-Circle::Circle(float x, float y, std::string name, float Radius, sf::Color color):
-Element(x,y,name),
-color(color),
-Radius(Radius)
+Circle::Circle(float x, float y, std::string name, float Radius, sf::Color color) :
+	Element(x, y, name),
+	color(color),
+	Radius(Radius)
 {
 }
 
-void Circle::render(sf::RenderWindow &window) {
+void Circle::render(sf::RenderWindow& window) {
 	if (nb_Points <= 1) {
 		sf::CircleShape circle(Radius);
 		circle.setFillColor(color);

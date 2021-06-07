@@ -1,6 +1,7 @@
 #include "Level1UpdateStrategy.h"
 #include "Screen.h"
 #include "Game.h"
+#include "Menu.h"
 
 Screen* Level1UpdateStrategy::update(Screen &screen) {
 
@@ -15,7 +16,14 @@ Screen* Level1UpdateStrategy::update(Screen &screen) {
 		screen.getGame()->nextLevel();
 
 		/* On retourne un poiteur vers le nouveau niveau courant (le niveau suivant). */
-		return screen.getGame()->getCurrentLevel();
+		return screen.getGame()->getMenu(Menu::WIN);
+
+	}
+	else if (screen.isFailed()) {
+
+		screen.setFailed(false);
+
+		return screen.getGame()->getMenu(Menu::LOSE);
 
 	}
 

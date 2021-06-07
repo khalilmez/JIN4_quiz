@@ -8,7 +8,7 @@ class Circle : public Element {
 
 public:
 
-	explicit Circle(float x, float y, std::string name, float Radius , sf::Color color, int Nb);
+	explicit Circle(float x, float y, std::string name, float Radius, sf::Color color, int Nb);
 
 	explicit Circle(float x, float y, std::string name, float Radius, sf::Color color);
 
@@ -40,7 +40,7 @@ private:
 	/* Le rayon du cercle.
 	*/
 	float Radius;
-	
+
 	/* Le nombre d'arêtes. 0 pour un cercle normale (3 triangle ...)
 	*/
 	int nb_Points = 0;

@@ -13,6 +13,9 @@
 #include "Rectangle.h"
 #include "ImGuiWindowBuilder.h"
 #include "ImGuiWindow.h"
+#include "WinLoseEventHandler.h"
+#include "WinLoseUpdateStrategy.h"
+#include "Sprite.h"
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -31,7 +34,6 @@ void Game::init() {
 
 	/* Ne pas oublier d'ajouter l'écran qui s'affiche (écran d'erreur) quand un écran particulier n'est pas trouvé. */
 	/* Cet écran doit être associé à Menu::NOT_FOUND dans Game::menus.                                              */
-
 	auto errorScreen = std::make_unique<Screen>(
 		this,
 		nullptr,
@@ -40,6 +42,34 @@ void Game::init() {
 		);
 	// Ajouter les éléments de l'écran d'erreur ici.
 	menus[Menu::NOT_FOUND] = std::move(errorScreen);
+
+	/* Écran de victoire */
+	auto winScreen = std::make_unique<Screen>(
+		this,
+		std::move(std::make_unique<WinLoseEventHandler>()),
+		std::move(std::make_unique<WinLoseUpdateStrategy>()),
+		sf::Color()
+		);
+
+	winScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png")));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(160, 10, "text", "resources/win.png")));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/next.png")));
+
+	menus[Menu::WIN] = std::move(winScreen);
+
+	/* Écran de défaite */
+	auto loseScreen = std::make_unique<Screen>(
+		this,
+		std::move(std::make_unique<WinLoseEventHandler>()),
+		std::move(std::make_unique<WinLoseUpdateStrategy>()),
+		sf::Color()
+		);
+
+	loseScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png")));
+	loseScreen->addElement(std::move(std::make_unique<Sprite>(180, 10, "text", "resources/lose.png")));
+	loseScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/retry.png")));
+
+	menus[Menu::LOSE] = std::move(loseScreen);
 
 	/* Niveau 1 */
 	auto level1 = std::make_unique<Screen>(
