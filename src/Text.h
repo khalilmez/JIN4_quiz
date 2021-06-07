@@ -13,6 +13,8 @@ public:
 
 	void render(sf::RenderWindow& window) const override;
 
+	bool contains(const float x, const float y) const override;
+
 private:
 
 	/* Le contenu textuel de l'élément.

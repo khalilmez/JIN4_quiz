@@ -8,18 +8,19 @@ void Level1EventHandler::handle(Screen& screen, const sf::Event& event, sf::Rend
         int x, y;
         x = sf::Mouse::getPosition(window).x;
         y = sf::Mouse::getPosition(window).y;
-        std::cout << "x = " << x << " y = " << y << std::endl;
 
-        float X_element = screen.getElement(0)->getX();
-        float Y_element = screen.getElement(0)->getY();
-
-        if (x >= X_element && x <= (X_element + 100)
-            && y >= Y_element && y <= (Y_element + 100)) {
+        if (screen.getElement(1)->contains(x, y)) {
             cout << "BRAVO !" << endl;
             screen.setCompleted(true);
         }
-        else {
+        else if(screen.getElement(2)->contains(x, y)){
             cout << "Reessayez ! " << endl;
+        }
+        else if (screen.getElement(3)->contains(x, y)) {
+            cout << "Reessayez ! " << endl;
+        }
+        else if (screen.getElement(4)->contains(x, y)) {
+            cout << "Reessayez !" << endl;
         }
     }
 
