@@ -1,10 +1,13 @@
 #pragma once
 #include "Element.h"
 #include <SFML/Graphics.hpp>
+#include <pugixml.hpp>
 
 class Sprite : public Element {
 
 public:
+
+	explicit Sprite(pugi::xml_node &node);
 
 	explicit Sprite(float x, float y, std::string name, std::string textureFile);
 
