@@ -2,10 +2,13 @@
 #include "Screen.h"
 
 class EventHandler {
-
+protected:
 public:
-
 	virtual ~EventHandler() = default;
+<<<<<<< HEAD
 	virtual void handle(Screen &screen, const sf::Event &event, sf::RenderWindow &window) = 0;
 
+=======
+	virtual void handle(Screen& screen, const sf::Event &event, sf::RenderWindow& window) = 0;
+>>>>>>> a4a2c5c38500692788b12cfe027e072446a93b3a
 };

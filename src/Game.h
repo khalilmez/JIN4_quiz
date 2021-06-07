@@ -20,10 +20,10 @@ public:
 	*/
 	Screen* getMenu(int id) const;
 
-	/* Permet de récupérer le niveau d'indice id dans 
-	Game::levels (cf. commentaire sur Game::levels).
+	/* Permet de récupérer le niveau courant
+	(Game::levels[Game::currentLevel]).
 	*/
-	Screen* getLevel(int id) const;
+	Screen* getCurrentLevel() const;
 
 	/* Ajoute un menu au jeu.
 	* Utilisé dans la méthode Game::init().
@@ -34,6 +34,11 @@ public:
 	* Utilisé dans la méthode Game::init().
 	*/
 	void addLevel(std::unique_ptr<Screen> level);
+
+	/* Incrémente l'indice du niveau courant. 
+	Permet de passer au niveau suivant.
+	*/
+	void nextLevel();
 
 private:
 

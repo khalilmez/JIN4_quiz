@@ -43,3 +43,29 @@ void Screen::addElement(std::unique_ptr<Element> element) {
 	elements.push_back(std::move(element));
 
 }
+
+bool Screen::isCompleted() const {
+
+	return completed;
+
+}
+
+void Screen::setCompleted(bool c) {
+
+	completed = c;
+
+}
+
+Element* Screen::getElement(int id) const {
+
+	if (id < 0 || id >= elements.size()) { return nullptr; }
+
+	return elements[id].get();
+
+}
+
+Game* Screen::getGame() const {
+
+	return game;
+
+}

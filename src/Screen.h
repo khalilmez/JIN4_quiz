@@ -52,27 +52,40 @@ public:
 	*/
 	void addElement(std::unique_ptr<Element> element);
 
+	Element* getElement(int id) const;
+
+	bool isCompleted() const;
+
+	void setCompleted(bool c);
+
+	Game* getGame() const;
+
 private:
+
+	/* Booléen indiquant si on peut passer à l'écran/niveau 
+	suivant.
+	*/
+	bool completed = false;
 
 	/* Le jeu auquel appartient le niveau.
 	*/
 	Game* game;
 
-	/* Le gestionnaire d'événements utilisateur à 
+	/* Les éléments constituant l'écran.
+	*/
+	std::vector<std::unique_ptr<Element>> elements;
+
+	/* Le gestionnaire d'événements utilisateur à
 	utiliser pour l'écran
 	(cf. Screen::handleEvent(...)).
 	*/
 	std::unique_ptr<EventHandler> eventHandler;
 
-	/* La stratégie de mise-à-jour spontanée de 
-	l'écran 
+	/* La stratégie de mise-à-jour spontanée de
+	l'écran
 	(cf. Screen::update()).
 	*/
 	std::unique_ptr<UpdateStrategy> updateStrategy;
-
-	/* Les éléments constituant l'écran.
-	*/
-	std::vector<std::unique_ptr<Element>> elements;
 
 	/* La couleur de fond de l'écran.
 	*/

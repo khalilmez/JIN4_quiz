@@ -1,7 +1,12 @@
 #include "Level1EventHandler.h"
+<<<<<<< HEAD
+
+void Level1EventHandler::handle(Screen& screen, const sf::Event& event, sf::RenderWindow &window) {
+=======
 #include <iostream>
 using namespace std;
 void Level1EventHandler::handle(Screen& screen, const sf::Event& event, sf::RenderWindow& window) {
+>>>>>>> a4a2c5c38500692788b12cfe027e072446a93b3a
 
 	/* Gestion des événements utilisateur du niveau 1 ici. */
     if (event.type == sf::Event::MouseButtonPressed) {
@@ -10,8 +15,8 @@ void Level1EventHandler::handle(Screen& screen, const sf::Event& event, sf::Rend
         y = sf::Mouse::getPosition(window).y;
         std::cout << "x = " << x << " y = " << y << std::endl;
 
-        float X_element = screen.getElement(0)->getX();
-        float Y_element = screen.getElement(0)->getY();
+        float X_element = screen.get_Elements()[0].get()->getX();
+        float Y_element = screen.get_Elements()[0].get()->getY();
 
         if (x >= X_element && x <= (X_element + 100)
             && y >= Y_element && y <= (Y_element + 100)) {
