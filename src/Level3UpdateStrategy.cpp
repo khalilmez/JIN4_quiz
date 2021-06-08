@@ -9,7 +9,7 @@
 Screen* Level3UpdateStrategy::update(Screen &screen) {
 
 
-	/* Vérifier la condition de victoire du niveau 1 ici. */
+	/* Vérifier la condition de victoire du niveau 3 ici. */
 	if (screen.isCompleted() ) {
 
 		/* Autres choses ici, si besoin  */
@@ -19,8 +19,20 @@ Screen* Level3UpdateStrategy::update(Screen &screen) {
 		*/
 		screen.getGame()->nextLevel();
 
+		std::cout << "Vous etes magnifique !" << std::endl;
+
+		/* On retourne un poiteur vers l'ecran d'adieu :'( */
+		return screen.getGame()->getMenu(Menu::BYE);
+
+	}
+
+	if (screen.isFailed()) {
+
+		/* Autres choses ici, si besoin  */
+
+		screen.setFailed(false);
 		/* On retourne un poiteur vers le nouveau niveau courant (le niveau suivant). */
-		return screen.getGame()->getMenu(Menu::WIN);
+		return screen.getGame()->getMenu(Menu::LOSE);
 
 	}
 
