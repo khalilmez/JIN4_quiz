@@ -11,7 +11,7 @@ public:
 
 	explicit Text(float x, float y, std::string name, std::string content, sf::Font font, int characterSize, sf::Color color, sf::Text::Style style);
 
-	void render(sf::RenderWindow& window) const override;
+	void render(sf::RenderWindow& window) override;
 
 	bool contains(const float x, const float y) const override;
 

@@ -16,38 +16,38 @@ public:
 	Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor);
 
 	/* Affiche l'écran.
-	Cette méthode appelle successivement les méthodes 
-	Element::render(...) de tous les éléments constituant 
+	Cette méthode appelle successivement les méthodes
+	Element::render(...) de tous les éléments constituant
 	l'écran.
 	*/
-	void render(sf::RenderWindow &window) const;
+	void render(sf::RenderWindow& window) const;
 
-	/* Gère les événements utilisateur sur l'écran 
+	/* Gère les événements utilisateur sur l'écran
 	courant.
 	Comme chaque écran doit gérer ces événements différemment,
-	cette méthode utilise une stratégie héritant de 
+	cette méthode utilise une stratégie héritant de
 	l'interface EventHandler.
 	Cette stratégie est contenue dans Screen::eventHandler.
 	*/
-	void handleEvent(const sf::Event &event, sf::RenderWindow &window);
+	void handleEvent(const sf::Event& event, sf::RenderWindow& window);
 
-	/* Gère les mises-à-jour "spontanées" (ne dépendant 
+	/* Gère les mises-à-jour "spontanées" (ne dépendant
 	pas d'événements utilisateurs) de l'écran.
 	Comme chaque écran possède des processus de mise-à-jour différents,
 	cette méthode utilise une stratégie héritant de
 	l'interface UpdateStrategy.
 	Cette stratégie est contenue dans Screen::updateStrategy.
-	Cette méthode teste également la condition de transition de 
+	Cette méthode teste également la condition de transition de
 	l'écran courant vers son successeur ("condition de victoire"
 	pour les niveaux).
-	Dans le cas où cette condition est vérifiée, cette méthode 
+	Dans le cas où cette condition est vérifiée, cette méthode
 	renvoie un pointeur vers l'écran suivant.
 	Dans le cas contraire, elle renvoie un pointeur vers l'écran
 	sur laquelle elle est appelée.
 	*/
 	Screen* update();
 
-	/* Permet d'ajouter des éléments à 
+	/* Permet d'ajouter des éléments à
 	l'écran.
 	*/
 	void addElement(std::unique_ptr<Element> element);
@@ -68,7 +68,7 @@ public:
 
 private:
 
-	/* Booléen indiquant si on peut passer à l'écran/niveau 
+	/* Booléen indiquant si on peut passer à l'écran/niveau
 	suivant.
 	*/
 	bool completed = false;
