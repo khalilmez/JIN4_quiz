@@ -17,6 +17,8 @@
         </text>
         <circle x="30" y="80" name="Circle" radius="50" r="255" g="0" b="255"/>
         <rectangle x="540" y="100", name="Rectangle" width="50" length="100" r="255" g="255" b="0"/>
+        <circle x="540" y="280" name="Triangle" radius="50" nb_sides="3" r="255" g="0" b="0"/>
+        <circle x="30" y="280" name="octogone" radius="50" nb_sides="8" r="255" g="0" b="255"/>
     </level>
 </game>
 <!--
