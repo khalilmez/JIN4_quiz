@@ -4,7 +4,8 @@
 #include "Screen.h"
 #include "UpdateStrategy.h"
 #include "EventHandler.h"
-
+#include "ImGuiWindow.h"
+#include "ImGuiWindowBuilder.h"
 #define WIDTH 640
 #define HEIGHT 480
 #define APP_NAME "Quizzz"
@@ -12,11 +13,14 @@
 // using namespace std;
 
 int myMain() {
+    ImGuiWindowBuilder builder;
 
     /* Initialisation du jeu.
     */
     Game game;
     game.init();
+
+    ImGuiWindow imgui = builder.withTitle("Hellloooo").withInputText("Textt").build();
 
     /* Initialisation de l'écran 
     courant.
@@ -32,7 +36,7 @@ int myMain() {
     */
     sf::RenderWindow window;
     window.create(sf::VideoMode(WIDTH, HEIGHT), APP_NAME);
-
+    ImGui::SFML::Init(window);
     /* Pour la gestion des événements.
     */
     sf::Event event;
@@ -44,7 +48,6 @@ int myMain() {
         /* L'affichage de l'écran courant.
         */
         screen->render(window);
-
         /* Dépilage des événements utilisateur.
         */
         while (window.pollEvent(event)) {
@@ -60,13 +63,14 @@ int myMain() {
             screen->handleEvent(event, window);
 
         }
-
+        
         /* Vérification de la condition de transition et 
         mise-à-jour spontanée de l'écran courant.
         */
         screen = screen->update();
 
     }
+    ImGui::SFML::Shutdown();
 
     return 0;
 

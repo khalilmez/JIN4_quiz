@@ -3,8 +3,8 @@
 #include "EventHandler.h"
 
 Screen::Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor) :
-	game{game},
-	backgroundColor{backgroundColor}
+	game{ game },
+	backgroundColor{ backgroundColor }
 {
 
 	this->eventHandler = std::move(eventHandler);
@@ -12,11 +12,11 @@ Screen::Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::uniq
 
 }
 
-void Screen::render(sf::RenderWindow &window) const {
+void Screen::render(sf::RenderWindow& window) const {
 
 	window.clear(backgroundColor);
 
-	for (auto &element : elements) {
+	for (auto& element : elements) {
 
 		element->render(window);
 
@@ -26,7 +26,7 @@ void Screen::render(sf::RenderWindow &window) const {
 
 }
 
-void Screen::handleEvent(const sf::Event &event, sf::RenderWindow &window) {
+void Screen::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
 
 	eventHandler->handle(*this, event, window);
 

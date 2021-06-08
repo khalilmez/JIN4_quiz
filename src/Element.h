@@ -18,7 +18,7 @@ public:
 
 	/* Affiche l'élément.
 	*/
-	virtual void render(sf::RenderWindow& window) const = 0;
+	virtual void render(sf::RenderWindow& window) = 0;
 
 	/* Permet de savoir si le point de coordonnées
 	(x, y, z) se trouve dans l'élément.
