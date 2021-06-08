@@ -11,28 +11,29 @@
 #include "Level1EventHandler.h"
 #include "Level1UpdateStrategy.h"
 
-Screen::Screen(pugi::xml_node &node) :
+Screen::Screen(Game* game, pugi::xml_node &node) :
+	game{game},
 	backgroundColor{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() }
 {
 
-	if (node.attribute("event_handler").as_string() == "win_lose") {
+	if (!strcmp(node.attribute("event_handler").as_string(), "win_lose")) {
 
 		eventHandler = std::move(std::make_unique<WinLoseEventHandler>());
 
 	}
-	else if (node.attribute("event_handler").as_string() == "level1") {
+	else if (!strcmp(node.attribute("event_handler").as_string(), "level1")) {
 
 		eventHandler = std::move(std::make_unique<Level1EventHandler>());
 
 	}
 	else { eventHandler = nullptr; }
 
-	if (node.attribute("update_strategy").as_string() == "win_lose") {
+	if (!strcmp(node.attribute("update_strategy").as_string(), "win_lose")) {
 
 		updateStrategy = std::move(std::make_unique<WinLoseUpdateStrategy>());
 
 	}
-	else if (node.attribute("update_strategy").as_string() == "level1") {
+	else if (!strcmp(node.attribute("update_strategy").as_string(), "level1")) {
 
 		updateStrategy = std::move(std::make_unique<Level1UpdateStrategy>());
 
@@ -41,22 +42,22 @@ Screen::Screen(pugi::xml_node &node) :
 
 	for (auto& child : node.children()) {
 
-		if(child.name() == "text") { 
+		if(!strcmp(child.name(), "text")) { 
 		
 			addElement(std::move(std::make_unique<Text>(child)));
 		
 		}
-		else if (child.name() == "sprite") {
+		else if (!strcmp(child.name(), "sprite")) {
 
 			addElement(std::move(std::make_unique<Sprite>(child)));
 
 		}
-		else if (child.name() == "rectangle") {
+		else if (!strcmp(child.name(), "rectangle")) {
 
 			addElement(std::move(std::make_unique<Rectangle>(child)));
 
 		}
-		else if (child.name() == "circle") {
+		else if (!strcmp(child.name(), "circle")) {
 
 			addElement(std::move(std::make_unique<Circle>(child)));
 

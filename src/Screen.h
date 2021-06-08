@@ -14,7 +14,7 @@ class Screen {
 
 public:
 
-	explicit Screen(pugi::xml_node &node);
+	explicit Screen(Game* game, pugi::xml_node &node);
 
 	Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor);
 

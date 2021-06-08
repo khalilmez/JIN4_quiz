@@ -10,7 +10,7 @@ Text::Text(pugi::xml_node &node) :
 
 	if(!font.loadFromFile(node.attribute("font").as_string())) { std::cout << "Error while loading font.\n"; }
 
-	if (node.attribute("style").as_string() == "bold") { style = sf::Text::Bold; }
+	if (!strcmp(node.attribute("style").as_string(), "bold")) { style = sf::Text::Bold; }
 
 	else { style = sf::Text::Regular; }
 
