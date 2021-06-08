@@ -32,8 +32,9 @@
         -->
     </level>
     <level event_handler="level3" update_strategy="level3" r="0" g="0" b="0">
+        <sprite x="0" y="0" name="background" file="resources/paper.png"/>
     	<text x="10" y="10" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="200" g="200" b="200">Sur quel nombre l'aiguille des heures pointera-t-elle dans 31 heures ?</text>
-	    <sprite x="180" y="10" name="text" file="resources/horloge.png"/>
+	    <sprite x="180" y="10" name="text" file="resources/clock.png"/>
         <imgui x="100" y="100" name="imgui" title="Test" int_input_label="Entez du int ici !">
             Niveau 3
         </imgui>
