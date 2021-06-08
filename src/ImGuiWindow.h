@@ -30,6 +30,12 @@ public:
 	explicit ImGuiWindow(std::string const &title, std::string const &content, const bool inputFloat, std::string const &titleFloat, const bool inputInt, std::string const &titleInt, const bool inputText, std::string const &titleText, const bool button, std::string const &buttonTitle, const bool menu);
 	void init(sf::RenderWindow &window, std::string const &title, std::string const &content);
 	void render(sf::RenderWindow &window) override;
+	std::string getTitle() const;
+	std::string getContent() const;
+	bool hasInt() const;
+	std::string getTitleInt() const;
+	bool hasFloat() const;
+	int getInt() const;
 
 };
 

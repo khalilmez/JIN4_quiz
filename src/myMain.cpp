@@ -48,6 +48,7 @@ int myMain() {
 
         /* L'affichage de l'écran courant.
         */
+        screen = screen->update();
         screen->render(window);
         /* Dépilage des événements utilisateur.
         */
@@ -71,7 +72,6 @@ int myMain() {
         /* Vérification de la condition de transition et 
         mise-à-jour spontanée de l'écran courant.
         */
-        screen = screen->update();
 
     }
 

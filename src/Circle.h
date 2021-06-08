@@ -19,29 +19,15 @@ public:
 
 	bool contains(const float x, const float y) const override;
 
-	float getRadius() const {
+	float getRadius() const;
 
-		return radius;
+	int getNumberOfSides() const;
 
-	}
+	void setRadius(float radius);
 
-	int getNumberOfSides() const {
-		
-		return sides;
+	void setNumberOfSides(int nb);
 
-	}
-
-	void setRadius(float radius) {
-
-		this->radius = radius;
-
-	}
-
-	void setNumberOfSides(int nb) {
-
-		sides = nb;
-
-	}
+	sf::Color getColor() const;
 
 private:
 
