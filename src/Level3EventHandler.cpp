@@ -5,9 +5,9 @@
 void Level3EventHandler::handle(Screen& screen, sf::Event const &event, sf::RenderWindow const &window) {
 
 	/* Gestion des événements utilisateur du niveau 3 ici. */
-    ImGuiWindow* imgui =(ImGuiWindow*)(screen.getElement(2));
+    ImGuiWindow* imgui =(ImGuiWindow*)(screen.getElement(3));
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) ) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
         if (imgui->getInt() == 9) {
             screen.setCompleted(true);
         }
