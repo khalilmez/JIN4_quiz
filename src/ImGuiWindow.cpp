@@ -39,11 +39,43 @@ void ImGuiWindow::render(sf::RenderWindow &window) {
 	if (inputFloat) { ImGui::InputFloat(titleFloat.c_str(), &f_input); }
 	if (inputInt) { ImGui::InputInt(titleFloat.c_str(), &i_input); }
 	if (inputText) { ImGui::InputText(titleText.c_str(), reponseText, IM_ARRAYSIZE(reponseText)); }
-	if (button) { ImGui::Button(buttonTitle.c_str()); }
+	if (button) { 
+		ImGui::Button(buttonTitle.c_str());
+	}
 	
 	ImGui::Text(content.c_str());
 
 	ImGui::End();
 	ImGui::SFML::Render(window);
 
+}
+
+std::string ImGuiWindow::getTitle() const
+{
+	return title;
+}
+
+std::string ImGuiWindow::getContent() const
+{
+	return content;
+}
+
+bool ImGuiWindow::hasInt() const
+{
+	return inputInt;
+}
+
+std::string ImGuiWindow::getTitleInt() const
+{
+	return titleInt;
+}
+
+bool ImGuiWindow::hasFloat() const
+{
+	return inputFloat;
+}
+
+
+int ImGuiWindow::getInt() const {
+	return i_input;
 }

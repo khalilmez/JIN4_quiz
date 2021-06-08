@@ -1,9 +1,13 @@
-#include "Level2UpdateStrategy.h"
+#include "Level3UpdateStrategy.h"
 #include "Screen.h"
 #include "Game.h"
 #include "Menu.h"
+#include "imgui.h"
+#include "ImGuiWindow.h"
+#include <iostream>
 
-Screen* Level2UpdateStrategy::update(Screen &screen) {
+Screen* Level3UpdateStrategy::update(Screen &screen) {
+
 
 	/* Vérifier la condition de victoire du niveau 1 ici. */
 	if (screen.isCompleted() ) {

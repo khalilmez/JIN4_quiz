@@ -17,13 +17,11 @@ public:
 
 	bool contains(const float x, const float y) const override;
 
-	float get_Width() const {
-		return width;
-	}
+	float get_Width() const;
 
-	float get_Length() const {
-		return length;
-	}
+	float get_Length() const;
+
+	sf::Color getColor() const;
 
 private:
 	/* La couleur du cercle.

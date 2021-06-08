@@ -30,3 +30,16 @@ bool Rectangle::contains(const float x_mouse, const float y_mouse) const
 	}
 	return false;
 }
+
+sf::Color Rectangle::getColor() const
+{
+	return color;
+}
+
+float Rectangle::get_Width() const {
+	return width;
+}
+
+float Rectangle::get_Length() const {
+	return length;
+}

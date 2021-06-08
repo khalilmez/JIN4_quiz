@@ -12,6 +12,8 @@
 #include "Level1UpdateStrategy.h"
 #include "Level2EventHandler.h"
 #include "Level2UpdateStrategy.h"
+#include "Level3EventHandler.h"
+#include "Level3UpdateStrategy.h"
 #include "ImGuiWindowBuilder.h"
 #include "ImGuiWindow.h"
 
@@ -35,6 +37,11 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 		eventHandler = std::move(std::make_unique<Level2EventHandler>());
 
 	}
+	else if (!strcmp(node.attribute("event_handler").as_string(), "level3")) {
+
+		eventHandler = std::move(std::make_unique<Level3EventHandler>());
+
+	}
 	else { eventHandler = nullptr; }
 
 	if (!strcmp(node.attribute("update_strategy").as_string(), "win_lose")) {
@@ -51,6 +58,10 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 
 		updateStrategy = std::move(std::make_unique<Level2UpdateStrategy>());
 
+	}
+	else if (!strcmp(node.attribute("update_strategy").as_string(), "level3")) {
+
+		updateStrategy = std::move(std::make_unique<Level3UpdateStrategy>());
 	}
 	else { eventHandler = nullptr; }
 

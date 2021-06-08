@@ -22,10 +22,17 @@
     <level event_handler="level2" update_strategy="level2" r="0" g="0" b="0">
         <text x="10" y="10" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="200" g="200" b="200">Formez un rectangle !</text>
         <rectangle x="250" y="250" name="Rectangle" width="100" length="100" r="255" g="255" b="0"/>
-        <!--
+        <circle x="30" y="280" name="octogone" radius="50" nb_sides="8" r="255" g="0" b="255"/>
         <imgui x="100" y="100" name="imgui" title="Test" text_input_label="Entez du texte ici !" menu="true">
             Je suis une fenêtre de test !
+        </imgui> 
+        
+    </level>
+    <level event_handler="level3" update_strategy="level3" r="0" g="0" b="0">
+        <text x="10" y="10" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="200" g="200" b="200">Quel est le nombre d'heures sur laquelle l'aiguille des heures de cette horloge après 3 heures?</text>
+	<sprite x="180" y="10" name="text" file="resources/horloge.png"/>
+        <imgui x="100" y="100" name="imgui" title="Test" int_input_label="Entez du int ici !">
+            Niveau 3
         </imgui>
-        -->
     </level>
 </game>
