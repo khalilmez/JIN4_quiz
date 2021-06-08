@@ -24,10 +24,9 @@ private :
 	bool menu = false;
 
 public:
-	explicit ImGuiWindow();
+	ImGuiWindow();
 	explicit ImGuiWindow(std::string title, std::string content, bool inputFloat, std::string titleFloat, bool inputInt, std::string titleInt, bool inputText, std::string titleText, bool button, std::string  buttonTitle, bool menu);
 	void init(sf::RenderWindow window, std::string title, std::string content_f);
 	void render(sf::RenderWindow &window) override;
-	bool contains(const float x, const float y) const override;
 };
 

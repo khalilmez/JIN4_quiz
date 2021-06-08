@@ -8,7 +8,7 @@ public:
 
 	explicit Sprite(float x, float y, std::string name, std::string textureFile);
 
-	void render(sf::RenderWindow& window) const override;
+	void render(sf::RenderWindow& window) override;
 
 	bool contains(const float x, const float y) const override;
 

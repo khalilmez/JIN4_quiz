@@ -24,7 +24,7 @@ public:
 	(x, y, z) se trouve dans l'élément.
 	Pour les éléments 2D, la coordonnée z est inutile.
 	*/
-	virtual bool contains(const float x, const float y) const = 0;
+	virtual bool contains(const float x, const float y) const;
 
 protected:
 

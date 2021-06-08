@@ -48,7 +48,3 @@ void ImGuiWindow::render(sf::RenderWindow& window) {
 	ImGui::End();
 	ImGui::SFML::Render(window);
 }
-
-bool ImGuiWindow::contains(const float x, const float y) const {
-	return false;
-}

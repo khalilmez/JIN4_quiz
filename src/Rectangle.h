@@ -14,11 +14,11 @@ public:
 
 	bool contains(const float x, const float y) const override;
 
-	float get_Width() {
+	float get_Width() const {
 		return width;
 	}
 
-	float get_Length() {
+	float get_Length() const {
 		return length;
 	}
 

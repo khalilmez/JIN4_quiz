@@ -13,7 +13,7 @@ Sprite::Sprite(float x, float y, std::string name, std::string textureFile) :
 
 }
 
-void Sprite::render(sf::RenderWindow& window) const {
+void Sprite::render(sf::RenderWindow& window) {
 
 	sf::Sprite sprite;
 
