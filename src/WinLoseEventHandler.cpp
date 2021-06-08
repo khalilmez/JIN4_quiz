@@ -1,6 +1,6 @@
 #include "WinLoseEventHandler.h"
 
-void WinLoseEventHandler::handle(Screen& screen, const sf::Event& event, sf::RenderWindow &window) {
+void WinLoseEventHandler::handle(Screen& screen, sf::Event const& event, sf::RenderWindow const& window) {
 
 	const Element* element;
 

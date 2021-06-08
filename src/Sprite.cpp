@@ -1,7 +1,15 @@
 #include "Sprite.h"
 #include <iostream>
 
-Sprite::Sprite(float x, float y, std::string name, std::string textureFile) : 
+Sprite::Sprite(pugi::xml_node const& node) :
+	Element{ node.attribute("x").as_float(), node.attribute("y").as_float(), node.attribute("name").as_string() }
+{
+
+	if (!texture.loadFromFile(node.attribute("file").as_string())) { std::cout << "Error while loading texture.\n"; }
+
+}
+
+Sprite::Sprite(const float x, const float y, std::string const &name, std::string const &textureFile) : 
 	Element{x, y, name}
 {
 

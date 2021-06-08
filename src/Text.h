@@ -2,6 +2,7 @@
 #include "Element.h"
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <pugixml.hpp>
 
 /* Cette classe représente les éléments textuels d'un écran.
 */
@@ -9,7 +10,9 @@ class Text : public Element {
 
 public:
 
-	explicit Text(float x, float y, std::string name, std::string content, sf::Font font, int characterSize, sf::Color color, sf::Text::Style style);
+	explicit Text(pugi::xml_node const &node);
+
+	explicit Text(const float x, const float y, std::string const &name, std::string const &content, sf::Font const &font, const int characterSize, sf::Color const &color, sf::Text::Style const &style);
 
 	void render(sf::RenderWindow& window) override;
 

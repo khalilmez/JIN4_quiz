@@ -1,6 +1,6 @@
 #include "Element.h"
 
-Element::Element(float x, float y, std::string name) :
+Element::Element(const float x, const float y, const std::string &name) :
 	x{ x },
 	y{ y },
 	name{ name }

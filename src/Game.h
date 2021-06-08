@@ -18,7 +18,7 @@ public:
 	/* Permet de récupérer les menu associé à l'indentifiant
 	id dans Game::menus.
 	*/
-	Screen* getMenu(int id) const;
+	Screen* getMenu(const int id) const;
 
 	/* Permet de récupérer le niveau courant
 	(Game::levels[Game::currentLevel]).

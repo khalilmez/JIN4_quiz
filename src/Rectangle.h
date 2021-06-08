@@ -1,6 +1,7 @@
 #pragma once
 #include "Element.h"
 #include <SFML/Graphics.hpp>
+#include <pugixml.hpp>
 
 /* Cette classe représente les éléments textuels d'un écran.
 */
@@ -8,7 +9,9 @@ class Rectangle : public Element {
 
 public:
 
-	explicit Rectangle(float x, float y, std::string name, float width ,float length, sf::Color color);
+	explicit Rectangle(pugi::xml_node const &node);
+
+	explicit Rectangle(float x, float y, std::string const &name, const float width, const float length, sf::Color const &color);
 
 	void render(sf::RenderWindow& window) override;
 

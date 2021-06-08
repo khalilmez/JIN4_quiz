@@ -6,6 +6,6 @@ class EventHandler {
 public:
 
 	virtual ~EventHandler() = default;
-	virtual void handle(Screen &screen, const sf::Event &event, sf::RenderWindow &window) = 0;
+	virtual void handle(Screen &screen, sf::Event const &event, sf::RenderWindow const &window) = 0;
 
 };

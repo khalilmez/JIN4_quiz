@@ -6,7 +6,9 @@
 #include "imgui-SFML.h"
 
 class ImGuiWindow : public Element {
+
 private :
+
 	std::string title;
 	std::string content;
 	sf::Clock deltaClock;
@@ -24,9 +26,10 @@ private :
 	bool menu = false;
 
 public:
-	ImGuiWindow();
-	explicit ImGuiWindow(std::string title, std::string content, bool inputFloat, std::string titleFloat, bool inputInt, std::string titleInt, bool inputText, std::string titleText, bool button, std::string  buttonTitle, bool menu);
-	void init(sf::RenderWindow window, std::string title, std::string content_f);
+
+	explicit ImGuiWindow(std::string const &title, std::string const &content, const bool inputFloat, std::string const &titleFloat, const bool inputInt, std::string const &titleInt, const bool inputText, std::string const &titleText, const bool button, std::string const &buttonTitle, const bool menu);
+	void init(sf::RenderWindow &window, std::string const &title, std::string const &content);
 	void render(sf::RenderWindow &window) override;
+
 };
 

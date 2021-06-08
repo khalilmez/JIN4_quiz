@@ -7,44 +7,44 @@
 #include <string.h>
 #include <iostream>
 
-ImGuiWindowBuilder& ImGuiWindowBuilder::withTitle(std::string title) {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withTitle(std::string const& title) {
 	this->title = title;
-	return *this;
+	return this;
 }
 
-ImGuiWindowBuilder& ImGuiWindowBuilder::withContent(std::string content) {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withContent(std::string const& content) {
 	this->content = content;
-	return *this;
+	return this;
 }
 
-ImGuiWindowBuilder& ImGuiWindowBuilder::withInputFloat(std::string titleFloat) {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withInputFloat(std::string const& titleFloat) {
 	inputFloat = true;
 	this->titleFloat = titleFloat;
-	return *this;
+	return this;
 }
 
-ImGuiWindowBuilder& ImGuiWindowBuilder::withInputInt(std::string titleInt) {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withInputInt(std::string const& titleInt) {
 	inputInt = true;
 	this->titleInt = titleInt;
-	return *this;
+	return this;
 }
 
-ImGuiWindowBuilder& ImGuiWindowBuilder::withInputText(std::string title_inputText) {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withInputText(std::string const& title_inputText) {
 	inputText = true;
 	titleText = title_inputText;
-	return *this;
+	return this;
 }
-ImGuiWindowBuilder& ImGuiWindowBuilder::withButton(std::string titleButton) {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withButton(std::string const& titleButton) {
 	button = true;
 	buttonTitle = titleButton;
-	return *this;
+	return this;
 }
-ImGuiWindowBuilder& ImGuiWindowBuilder::withMenu() {
+ImGuiWindowBuilder* ImGuiWindowBuilder::withMenu() {
 	menu = true;
-	return *this;
+	return this;
 }
 
-ImGuiWindow& ImGuiWindowBuilder::build() {
-	auto imgui = new ImGuiWindow(title, content, inputFloat, titleFloat, inputInt, titleInt, inputText, titleText, button, buttonTitle, menu);
-	return *imgui;
+ImGuiWindow ImGuiWindowBuilder::build() const {
+	auto imgui = ImGuiWindow(title, content, inputFloat, titleFloat, inputInt, titleInt, inputText, titleText, button, buttonTitle, menu);
+	return imgui;
 }

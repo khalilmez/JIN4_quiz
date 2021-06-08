@@ -32,14 +32,14 @@ private:
 
 public:
 
-	ImGuiWindowBuilder& withTitle(std::string title);
-	ImGuiWindowBuilder& withContent(std::string content);
-	ImGuiWindowBuilder& withInputFloat(std::string title);
-	ImGuiWindowBuilder& withInputInt(std::string title);
-	ImGuiWindowBuilder& withInputText(std::string title_inputText);
-	ImGuiWindowBuilder& withButton(std::string title);
-	ImGuiWindowBuilder& withMenu();
-	ImGuiWindow& build();
+	ImGuiWindowBuilder* withTitle(std::string const& title);
+	ImGuiWindowBuilder* withContent(std::string const& content);
+	ImGuiWindowBuilder* withInputFloat(std::string const& title);
+	ImGuiWindowBuilder* withInputInt(std::string const& title);
+	ImGuiWindowBuilder* withInputText(std::string const& title_inputText);
+	ImGuiWindowBuilder* withButton(std::string const& title);
+	ImGuiWindowBuilder* withMenu();
+	ImGuiWindow build() const;
 
 };
 

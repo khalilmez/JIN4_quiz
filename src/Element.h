@@ -6,7 +6,7 @@ class Element {
 
 public:
 
-	Element(float x, float y, std::string name);
+	explicit Element(const float x, const float y, std::string const &name);
 	virtual ~Element() = default;
 
 	float getX() const;

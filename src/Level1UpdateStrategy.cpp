@@ -31,4 +31,5 @@ Screen* Level1UpdateStrategy::update(Screen &screen) {
 
 	/* Après les modifications, on retourne un poiteur vers l'écran courant. */
 	return &screen;
+
 }

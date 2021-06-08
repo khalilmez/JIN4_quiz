@@ -1,11 +1,18 @@
 #include "Rectangle.h"
 #include <iostream>
 
-Rectangle::Rectangle(float x, float y, std::string name, float width, float length, sf::Color color) :
+Rectangle::Rectangle(pugi::xml_node const &node) : 
+	Element{ node.attribute("x").as_float(), node.attribute("y").as_float(), node.attribute("name").as_string() },
+	color{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() },
+	width{ node.attribute("width").as_float() },
+	length{ node.attribute("length").as_float() }
+{}
+
+Rectangle::Rectangle(const float x, const float y, std::string const &name, const float width, const float length, sf::Color const &color) :
 	Element{ x, y, name },
-	color(color),
-	width(width),
-	length(length)
+	color{ color },
+	width{ width },
+	length{ length }
 {}
 
 void Rectangle::render(sf::RenderWindow &window) {

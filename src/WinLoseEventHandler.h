@@ -5,6 +5,6 @@ class WinLoseEventHandler : public EventHandler {
 
 public:
 
-	void handle(Screen& screen, const sf::Event& event, sf::RenderWindow &window) override;
+	void handle(Screen& screen, sf::Event const &event, sf::RenderWindow const &window) override;
 
 };

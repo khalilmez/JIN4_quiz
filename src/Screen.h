@@ -1,9 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-// #include "Game.h"
 #include "Element.h"
-// #include "EventHandler.h"
-// #include "UpdateStrategy.h"
+#include <pugixml.hpp>
 
 class Game;
 class UpdateStrategy;
@@ -13,7 +11,9 @@ class Screen {
 
 public:
 
-	Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color backgroundColor);
+	explicit Screen(Game* game, pugi::xml_node const &node);
+
+	Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor);
 
 	/* Affiche l'écran.
 	Cette méthode appelle successivement les méthodes
@@ -52,17 +52,17 @@ public:
 	*/
 	void addElement(std::unique_ptr<Element> element);
 
-	Element* getElement(int id) const;
+	Element* getElement(const int id) const;
 
 	int getNumberOfElements() const;
 
 	bool isCompleted() const;
 
-	void setCompleted(bool c);
+	void setCompleted(const bool c);
 
 	bool isFailed() const;
 
-	void setFailed(bool c);
+	void setFailed(const bool c);
 
 	Game* getGame() const;
 

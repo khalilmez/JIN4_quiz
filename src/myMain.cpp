@@ -6,21 +6,17 @@
 #include "EventHandler.h"
 #include "ImGuiWindow.h"
 #include "ImGuiWindowBuilder.h"
+
 #define WIDTH 640
 #define HEIGHT 480
 #define APP_NAME "Quizzz"
 
-// using namespace std;
-
 int myMain() {
-    ImGuiWindowBuilder builder;
 
     /* Initialisation du jeu.
     */
     Game game;
     game.init();
-
-    ImGuiWindow imgui = builder.withTitle("Hellloooo").withInputText("Textt").build();
 
     /* Initialisation de l'écran 
     courant.
