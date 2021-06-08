@@ -32,7 +32,12 @@ int myMain() {
     */
     sf::RenderWindow window;
     window.create(sf::VideoMode(WIDTH, HEIGHT), APP_NAME);
+
+    /* Initialisation de ImGui pour les écrans 
+    qui l'utilisent.
+    */
     ImGui::SFML::Init(window);
+
     /* Pour la gestion des événements.
     */
     sf::Event event;
@@ -52,6 +57,9 @@ int myMain() {
             */
             if (event.type == sf::Event::Closed) {window.close();}
 
+            /* Traitement des événements par une éventuelle fenêtre ImGui. */
+            ImGui::SFML::ProcessEvent(event);
+
             /* Appel du gestionnaire d'événement de
             l'écran courant sur les événements utilisateurs 
             dépilés.
@@ -66,6 +74,8 @@ int myMain() {
         screen = screen->update();
 
     }
+
+    /* Fermeture de ImGui. */
     ImGui::SFML::Shutdown();
 
     return 0;
