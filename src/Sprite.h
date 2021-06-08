@@ -19,4 +19,6 @@ private:
 
 	sf::Texture texture;
 
+	sf::Sprite sprite;
+
 };

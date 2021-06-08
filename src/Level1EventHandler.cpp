@@ -4,22 +4,20 @@
 void Level1EventHandler::handle(Screen &screen, sf::Event const &event, sf::RenderWindow const &window) {
 
 	/* Gestion des événements utilisateur du niveau 1 ici. */
+    const Element* element;
+
     if (event.type == sf::Event::MouseButtonPressed) {
 
-        int x, y;
-        x = sf::Mouse::getPosition(window).x;
-        y = sf::Mouse::getPosition(window).y;
+        for (int k = 0; k < screen.getNumberOfElements(); k++) {
 
-        if (screen.getElement(1)->contains(x, y)) {
+            element = screen.getElement(k);
 
-            std::cout << "BRAVO !\n";
-            screen.setCompleted(true);
-
-        }
-        else if(screen.getElement(2)->contains(x, y) || screen.getElement(3)->contains(x, y) || screen.getElement(4)->contains(x, y)) {
-
-            std::cout << "Reessayez...\n";
-            screen.setFailed(true);
+            if ((element->contains(event.mouseButton.x, event.mouseButton.y))) { 
+            
+                if(element->getName() == "Circle") { screen.setCompleted(true); }
+                else { screen.setFailed(true); }
+            
+            }
 
         }
 

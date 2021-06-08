@@ -7,6 +7,8 @@ Sprite::Sprite(pugi::xml_node const& node) :
 
 	if (!texture.loadFromFile(node.attribute("file").as_string())) { std::cout << "Error while loading texture.\n"; }
 
+	sprite.setTexture(texture);
+
 }
 
 Sprite::Sprite(const float x, const float y, std::string const &name, std::string const &textureFile) : 
@@ -19,15 +21,13 @@ Sprite::Sprite(const float x, const float y, std::string const &name, std::strin
 
 	}
 
+	sprite.setTexture(texture);
+
 }
 
 void Sprite::render(sf::RenderWindow& window) {
 
-	sf::Sprite sprite;
-
 	sprite.setPosition(x, y);
-
-	sprite.setTexture(texture);
 
 	window.draw(sprite);
 
@@ -35,14 +35,6 @@ void Sprite::render(sf::RenderWindow& window) {
 
 bool Sprite::contains(const float x, const float y) const {
 
-	sf::Sprite sprite;
-
-	sprite.setPosition(x, y);
-
-	sprite.setTexture(texture);
-
-	sf::Rect<float> box = sprite.getGlobalBounds();
-
-	return box.contains(x, y);
+	return sprite.getGlobalBounds().contains(x, y);
 
 }
