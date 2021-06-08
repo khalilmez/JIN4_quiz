@@ -58,3 +58,32 @@ bool Circle::contains(const float x_mouse, const float y_mouse) const {
 	return false;
 
 }
+
+float Circle::getRadius() const {
+
+	return radius;
+
+}
+
+int Circle::getNumberOfSides() const {
+
+	return sides;
+
+}
+
+void Circle::setRadius(float radius) {
+
+	this->radius = radius;
+
+}
+
+void Circle::setNumberOfSides(int nb) {
+
+	sides = nb;
+
+}
+
+sf::Color Circle::getColor() const
+{
+	return color;
+}
