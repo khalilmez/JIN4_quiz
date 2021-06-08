@@ -36,6 +36,8 @@ void ImGuiWindow::render(sf::RenderWindow &window) {
 	ImGui::SFML::Update(window, deltaClock.restart());
 	ImGui::Begin(title.c_str());
 
+	ImGui::SetWindowPos(ImVec2(x, y), NULL);
+
 	if (inputFloat) { ImGui::InputFloat(titleFloat.c_str(), &f_input); }
 	if (inputInt) { ImGui::InputInt(titleFloat.c_str(), &i_input); }
 	if (inputText) { ImGui::InputText(titleText.c_str(), reponseText, IM_ARRAYSIZE(reponseText)); }
