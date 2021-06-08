@@ -19,7 +19,7 @@ Screen* Level3UpdateStrategy::update(Screen &screen) {
 		*/
 		screen.getGame()->nextLevel();
 
-		std::cout << "Vous etes magnifique !" << std::endl;
+		std::cout << "Vous etes magnifiques !" << std::endl;
 
 		/* On retourne un poiteur vers l'ecran d'adieu :'( */
 		return screen.getGame()->getMenu(Menu::BYE);
@@ -36,7 +36,7 @@ Screen* Level3UpdateStrategy::update(Screen &screen) {
 
 	}
 
-	/* Mises-à-jour spontanées du niveau 1 ici. */
+	/* Mises-à-jour spontanées du niveau 3 ici. */
 
 	/* Après les modifications, on retourne un poiteur vers l'écran courant. */
 	return &screen;
