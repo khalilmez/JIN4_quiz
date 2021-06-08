@@ -4,8 +4,6 @@
 #include "UpdateStrategy.h"
 #include "EventHandler.h"
 #include <iostream>
-#include "ImGuiWindowBuilder.h"
-#include "ImGuiWindow.h"
 #include <pugixml.hpp>
 
 #define WIDTH 640
@@ -17,10 +15,6 @@ void Game::init() {
 	à 0 (premier niveau).
 	*/
 	currentLevel = 0;
-
-	/* ImGui stuff. */
-	ImGuiWindowBuilder imGuiBuilder;
-	auto imgui = imGuiBuilder.withTitle("Hellooo")->withInputInt("Input")->withButton("Save")->build();
 
 	/* Construction des niveaux et menus en parsant 
 	le fichier resources/setup.xml.

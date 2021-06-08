@@ -24,6 +24,12 @@ bool Element::contains(const float x, const float y) const {
 	return false;
 }
 
+void Element::setName(std::string const& name) {
+
+	this->name = name;
+
+}
+
 std::string Element::getName() const {
 
 	return name;

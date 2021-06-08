@@ -14,6 +14,8 @@ public:
 	void setX(float X);
 	void setY(float Y);
 
+	void setName(std::string const& name);
+
 	std::string getName() const;
 
 	/* Affiche l'élément.

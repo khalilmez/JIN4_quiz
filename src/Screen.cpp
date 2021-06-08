@@ -12,6 +12,8 @@
 #include "Level1UpdateStrategy.h"
 #include "Level2EventHandler.h"
 #include "Level2UpdateStrategy.h"
+#include "ImGuiWindowBuilder.h"
+#include "ImGuiWindow.h"
 
 Screen::Screen(Game* game, pugi::xml_node const &node) :
 	game{game},
@@ -72,6 +74,33 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 		else if (!strcmp(child.name(), "circle")) {
 
 			addElement(std::move(std::make_unique<Circle>(child)));
+
+		}
+		else if (!strcmp(child.name(), "imgui")) {
+
+			ImGuiWindowBuilder builder;
+
+			auto ptr = builder.withTitle(child.attribute("title").as_string())->withContent(child.text().as_string());
+
+			auto floatInput = child.attribute("float_input_label");
+			auto intInput = child.attribute("int_input_label");
+			auto textInput = child.attribute("text_input_label");
+			auto button = child.attribute("button_label");
+			auto menu = child.attribute("menu");
+
+			if (floatInput) { ptr->withInputFloat(floatInput.as_string()); }
+			if (intInput) { ptr->withInputInt(intInput.as_string()); }
+			if (textInput) { ptr->withInputText(textInput.as_string()); }
+			if (button) { ptr->withButton(button.as_string()); }
+			if (menu && !strcmp(menu.as_string(), "true")) { ptr->withMenu(); }
+
+			auto window = ptr->build();
+
+			window.setX(child.attribute("x").as_float());
+			window.setY(child.attribute("y").as_float());
+			window.setName(child.attribute("name").as_string());
+
+			addElement(std::move(std::make_unique<ImGuiWindow>(window)));
 
 		}
 
