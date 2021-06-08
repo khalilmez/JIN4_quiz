@@ -38,6 +38,7 @@ void Game::init() {
 			if (!strcmp(child.attribute("type").as_string(), "win")) { menus[Menu::WIN] = std::move(menu); }
 			else if (!strcmp(child.attribute("type").as_string(), "lose")) { menus[Menu::LOSE] = std::move(menu); }
 			else if (!strcmp(child.attribute("type").as_string(), "launch")) { menus[Menu::LAUNCH] = std::move(menu); }
+			else if (!strcmp(child.attribute("type").as_string(), "bye")) { menus[Menu::BYE] = std::move(menu); }
 			else { menus[Menu::NOT_FOUND] = std::move(menu); }
 
 		}
