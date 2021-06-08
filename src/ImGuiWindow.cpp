@@ -4,17 +4,18 @@
 #include "imgui.h"
 
 ImGuiWindow::ImGuiWindow(std::string title, std::string content, bool inputFloat, std::string titleFloat, bool inputInt, std::string titleInt, bool inputText, std::string titleText, bool button, std::string  buttonTitle, bool menu) :
-Element(0,0,"ImGuiWindow"),inputFloat(inputFloat),
-inputInt(inputInt),
-inputText(inputText),
-button(button),
-menu(menu),
-title(title),
-content(content),
-titleFloat(titleFloat),
-titleInt(titleInt),
-titleText(titleText),
-buttonTitle(buttonTitle)
+	Element(0,0,"ImGuiWindow"),
+	inputFloat(inputFloat),
+	inputInt(inputInt),
+	inputText(inputText),
+	button(button),
+	menu(menu),
+	title(title),
+	content(content),
+	titleFloat(titleFloat),
+	titleInt(titleInt),
+	titleText(titleText),
+	buttonTitle(buttonTitle)
 {
 }
 

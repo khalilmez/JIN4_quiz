@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- Fichier de création des niveaux et menus du jeu -->
+<game>
+    <menu type="win" event_handler="win_lose" update_strategy="win_lose" r="0" g="0" b="0">
+        <sprite x="0" y="0" name="background" file="resources/stripes.png"/>
+        <sprite x="160" y="10" name="text" file="resources/win.png"/>
+        <sprite x="260" y="280" name="button" file="resources/next.png"/>
+    </menu>
+    <menu type="lose" event_handler="win_lose" update_strategy="win_lose" r="0" g="0" b="0">
+        <sprite x="0" y="0" name="background" file="resources/stripes.png"/>
+        <sprite x="180" y="10" name="text" file="resources/lose.png"/>
+        <sprite x="260" y="280" name="button" file="resources/retry.png"/>
+    </menu>
+    <level event_handler="level1" update_strategy="level1" r="0" g="0" b="0">
+        <text x="10" y="10" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="200" g="200" b="200">Trouvez la forme avec le plus de faces !</text>
+        <circle x="30" y="80" name="Circle" radius="50" r="255" g="0" b="255"/>
+        <rectangle x="540" y="100" name="Rectangle" width="50" length="100" r="255" g="255" b="0"/>
+        <circle x="540" y="280" name="Triangle" radius="50" nb_sides="3" r="255" g="0" b="0"/>
+        <circle x="30" y="280" name="octogone" radius="50" nb_sides="8" r="255" g="0" b="255"/>
+    </level>
+</game>

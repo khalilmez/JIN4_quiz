@@ -6,31 +6,29 @@
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
-ImGuiWindowBuilder::ImGuiWindowBuilder() {
 
-}
-
-
-ImGuiWindowBuilder& ImGuiWindowBuilder::withTitle(std::string title_t) {
-	title= title_t;
+ImGuiWindowBuilder& ImGuiWindowBuilder::withTitle(std::string title) {
+	this->title = title;
 	return *this;
 }
 
-ImGuiWindowBuilder& ImGuiWindowBuilder::withContent(std::string content_t) {
-	content = content_t;
+ImGuiWindowBuilder& ImGuiWindowBuilder::withContent(std::string content) {
+	this->content = content;
 	return *this;
 }
 
 ImGuiWindowBuilder& ImGuiWindowBuilder::withInputFloat(std::string titleFloat) {
 	inputFloat = true;
-	titleFloat= titleFloat;
+	this->titleFloat = titleFloat;
 	return *this;
 }
+
 ImGuiWindowBuilder& ImGuiWindowBuilder::withInputInt(std::string titleInt) {
 	inputInt = true;
-	titleInt = titleInt;
+	this->titleInt = titleInt;
 	return *this;
 }
+
 ImGuiWindowBuilder& ImGuiWindowBuilder::withInputText(std::string title_inputText) {
 	inputText = true;
 	titleText = title_inputText;
@@ -47,6 +45,6 @@ ImGuiWindowBuilder& ImGuiWindowBuilder::withMenu() {
 }
 
 ImGuiWindow& ImGuiWindowBuilder::build() {
-	ImGuiWindow* imgui = new ImGuiWindow(title, content, inputFloat, titleFloat, inputInt, titleInt, inputText, titleText, button, buttonTitle, menu);
+	auto imgui = new ImGuiWindow(title, content, inputFloat, titleFloat, inputInt, titleInt, inputText, titleText, button, buttonTitle, menu);
 	return *imgui;
 }

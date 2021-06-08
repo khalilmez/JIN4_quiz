@@ -19,6 +19,7 @@
 
 #define WIDTH 640
 #define HEIGHT 480
+
 void Game::init() {
 
 	/* Positionne l'indice du niveau actuel 

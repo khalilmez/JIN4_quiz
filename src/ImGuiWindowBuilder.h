@@ -7,8 +7,13 @@
 #include <string>
 #include <iostream>
 
+/* Builder de fenêtres ImGui.
+(patron de conception "monteur/builder").
+*/
 class ImGuiWindowBuilder{
-private :
+
+private:
+
 	std::string title;
 	std::string content;
 	sf::Clock deltaClock;
@@ -26,7 +31,7 @@ private :
 	bool menu = false;
 
 public:
-	ImGuiWindowBuilder();
+
 	ImGuiWindowBuilder& withTitle(std::string title);
 	ImGuiWindowBuilder& withContent(std::string content);
 	ImGuiWindowBuilder& withInputFloat(std::string title);
@@ -35,7 +40,6 @@ public:
 	ImGuiWindowBuilder& withButton(std::string title);
 	ImGuiWindowBuilder& withMenu();
 	ImGuiWindow& build();
-
 
 };
 

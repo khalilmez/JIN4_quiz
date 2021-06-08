@@ -33,6 +33,6 @@ private:
 	
 	/* Le nombre d'arêtes. 0 pour un cercle normale (3 triangle ...)
 	*/
-	int length;
+	float length;
 
 };
