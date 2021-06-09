@@ -9,7 +9,7 @@ public:
 
 	explicit Sprite(pugi::xml_node const &node);
 
-	explicit Sprite(const float x, const float y, std::string const &name, std::string const &textureFile);
+	explicit Sprite(const float x, const float y, std::string const &name, std::string const &textureFile, sf::Color const& color);
 
 	void render(sf::RenderWindow& window) override;
 
@@ -20,5 +20,7 @@ private:
 	sf::Texture texture;
 
 	sf::Sprite sprite;
+
+	sf::Color color;
 
 };

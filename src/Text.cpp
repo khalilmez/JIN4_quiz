@@ -3,14 +3,30 @@
 
 Text::Text(pugi::xml_node const &node) :
 	Element{ node.attribute("x").as_float(), node.attribute("y").as_float(), node.attribute("name").as_string() },
-	color{node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() },
 	size{ node.attribute("size").as_int() }
 {
 
 	if(!font.loadFromFile(node.attribute("font").as_string())) { std::cout << "Error while loading font.\n"; }
 
-	if (!strcmp(node.attribute("style").as_string(), "bold")) { style = sf::Text::Bold; }
+	auto red = node.attribute("r");
+	auto green = node.attribute("g");
+	auto blue = node.attribute("b");
+	auto alpha = node.attribute("a");
 
+	if (red && green && blue) {
+
+		color = sf::Color(red.as_int(), green.as_int(), blue.as_int());
+
+	}
+	else {
+
+		color = sf::Color();
+
+	}
+
+	if (alpha) { color.a = alpha.as_int(); }
+
+	if (!strcmp(node.attribute("style").as_string(), "bold")) { style = sf::Text::Bold; }
 	else { style = sf::Text::Regular; }
 
 	content = node.text().as_string();
