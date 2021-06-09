@@ -17,9 +17,9 @@ public:
 
 	bool contains(const float x, const float y) const override;
 
-	float get_Width() const;
+	float getWidth() const;
 
-	float get_Length() const;
+	float getHeight() const;
 
 	sf::Color getColor() const;
 
@@ -34,6 +34,6 @@ private:
 	
 	/* Le nombre d'arêtes. 0 pour un cercle normale (3 triangle ...)
 	*/
-	float length;
+	float height;
 
 };

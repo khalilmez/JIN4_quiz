@@ -25,6 +25,9 @@ private :
 	std::string buttonTitle;
 	bool menu = false;
 
+	float width;
+	float height;
+
 public:
 
 	explicit ImGuiWindow(std::string const &title, std::string const &content, const bool inputFloat, std::string const &titleFloat, const bool inputInt, std::string const &titleInt, const bool inputText, std::string const &titleText, const bool button, std::string const &buttonTitle, const bool menu);
@@ -36,6 +39,10 @@ public:
 	std::string getTitleInt() const;
 	bool hasFloat() const;
 	int getInt() const;
+
+	void setWidth(const float width);
+
+	void setHeight(const float height);
 
 };
 

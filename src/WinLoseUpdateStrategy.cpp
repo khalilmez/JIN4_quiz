@@ -4,9 +4,13 @@
 
 Screen* WinLoseUpdateStrategy::update(Screen& screen) {
 
+	clock++;
+
 	if(screen.isCompleted()) {
 
 		screen.setCompleted(false);
+
+		clock = 0;
 	
 		return screen.getGame()->getCurrentLevel();
 	

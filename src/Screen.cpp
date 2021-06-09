@@ -18,9 +18,23 @@
 #include "ImGuiWindow.h"
 
 Screen::Screen(Game* game, pugi::xml_node const &node) :
-	game{game},
-	backgroundColor{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() }
+	game{game}
 {
+
+	auto red = node.attribute("r");
+	auto green = node.attribute("g");
+	auto blue = node.attribute("b");
+
+	if (red && green && blue) {
+
+		backgroundColor = sf::Color(red.as_int(), green.as_int(), blue.as_int());
+
+	}
+	else {
+
+		backgroundColor = sf::Color();
+
+	}
 
 	if (!strcmp(node.attribute("event_handler").as_string(), "win_lose")) {
 
@@ -110,6 +124,8 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 			window.setX(child.attribute("x").as_float());
 			window.setY(child.attribute("y").as_float());
 			window.setName(child.attribute("name").as_string());
+			window.setWidth(child.attribute("width").as_float());
+			window.setHeight(child.attribute("height").as_float());
 
 			addElement(std::move(std::make_unique<ImGuiWindow>(window)));
 

@@ -43,8 +43,8 @@ TEST(TestClassRectangle, TestRectangle) {
 	EXPECT_EQ("RectangleTest", rectangle->getName());
 	EXPECT_EQ(10, rectangle->getX());
 	EXPECT_EQ(20, rectangle->getY());
-	EXPECT_EQ(150, rectangle->get_Length());
-	EXPECT_EQ(100, rectangle->get_Width());
+	EXPECT_EQ(150, rectangle->getHeight());
+	EXPECT_EQ(100, rectangle->getWidth());
 	EXPECT_EQ(sf::Color::Black, rectangle->getColor());
 	EXPECT_EQ(true, rectangle->contains(35, 85));
 	EXPECT_EQ(true, rectangle->contains(10, 85));

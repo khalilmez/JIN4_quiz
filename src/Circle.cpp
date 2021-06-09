@@ -3,9 +3,26 @@
 
 Circle::Circle(pugi::xml_node const &node) :
 	Element{ node.attribute("x").as_float(), node.attribute("y").as_float(), node.attribute("name").as_string() },
-	color{ node.attribute("r").as_int(), node.attribute("g").as_int(), node.attribute("b").as_int() },
 	radius{ node.attribute("radius").as_float() }
 {
+
+	auto red = node.attribute("r");
+	auto green = node.attribute("g");
+	auto blue = node.attribute("b");
+	auto alpha = node.attribute("a");
+
+	if (red && green && blue) {
+
+		color = sf::Color(red.as_int(), green.as_int(), blue.as_int());
+
+	}
+	else {
+
+		color = sf::Color();
+
+	}
+
+	if (alpha) { color.a = alpha.as_int(); }
 
 	auto temp = node.attribute("nb_sides");
 

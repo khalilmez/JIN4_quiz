@@ -82,3 +82,15 @@ bool ImGuiWindow::hasFloat() const
 int ImGuiWindow::getInt() const {
 	return i_input;
 }
+
+void ImGuiWindow::setWidth(const float width) {
+
+	this->width = width;
+
+}
+
+void ImGuiWindow::setHeight(const float height) {
+
+	this->height = height;
+
+}

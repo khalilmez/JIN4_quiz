@@ -21,14 +21,14 @@
         <sprite x="0" y="0" name="background" file="resources/paper.png"/>
         <text x="10" y="25" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="10" g="10" b="10">Trouvez la forme avec le plus de faces !</text>
         <circle x="50" y="95" name="Circle" radius="50" r="255" g="0" b="255"/>
-        <rectangle x="510" y="115" name="Rectangle" width="50" length="100" r="255" g="255" b="0"/>
+        <rectangle x="510" y="115" name="Rectangle" width="50" height="100" r="255" g="255" b="0"/>
         <circle x="510" y="280" name="Triangle" radius="50" nb_sides="3" r="255" g="0" b="0"/>
         <circle x="50" y="280" name="octogone" radius="50" nb_sides="8" r="255" g="0" b="255"/>
     </level>
     <level event_handler="level2" update_strategy="level2" r="0" g="0" b="0">
         <sprite x="0" y="0" name="background" file="resources/paper.png"/>
         <text x="137" y="45" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="10" g="10" b="10">Formez un rectangle !</text>
-        <rectangle x="250" y="250" name="Rectangle" width="100" length="100" r="255" g="255" b="0"/>
+        <rectangle x="250" y="250" name="Rectangle" width="100" height="100" r="255" g="255" b="0"/>
         <circle x="510" y="280" name="Triangle" radius="90" nb_sides="3" r="146" g="12" b="99"/>
         <!--
         <imgui x="100" y="100" name="imgui" title="Test" int_input_label="Votre réponse">

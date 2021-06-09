@@ -7,4 +7,8 @@ public:
 
 	Screen* update(Screen &screen) override;
 
+private:
+
+	int clock = 0;
+
 };
