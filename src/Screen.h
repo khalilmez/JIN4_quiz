@@ -54,6 +54,8 @@ public:
 
 	Element* getElement(const int id) const;
 
+	Element* getElementByName(std::string const& name) const;
+
 	int getNumberOfElements() const;
 
 	bool isCompleted() const;

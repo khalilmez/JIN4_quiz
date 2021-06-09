@@ -181,6 +181,18 @@ Element* Screen::getElement(const int id) const {
 
 }
 
+Element* Screen::getElementByName(std::string const& name) const {
+
+	for (auto& element : elements) {
+
+		if (element->getName() == name) { return element.get(); }
+
+	}
+
+	return nullptr;
+
+}
+
 int Screen::getNumberOfElements() const {
 
 	return elements.size();
