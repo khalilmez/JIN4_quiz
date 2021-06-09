@@ -14,12 +14,12 @@ private :
 	sf::Clock deltaClock;
 	bool inputFloat = false;
 	std::string titleFloat;
-	float f_input;
+	float f_input = 0;
 	bool inputInt = false;
 	std::string titleInt;
-	int i_input;
+	int i_input = 0;
 	bool inputText = false;
-	std::string titleText;
+	std::string titleText = "Écrivez ici";
 	char reponseText[50];
 	bool button = false;
 	std::string buttonTitle;

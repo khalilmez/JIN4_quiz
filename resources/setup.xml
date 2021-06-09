@@ -43,7 +43,7 @@ des heures pointera-t-elle
 dans 31 heures ?
         </text>
 	    <sprite x="380" y="170" name="text" file="resources/clock.png"/>
-        <imgui x="0" y="380" name="imgui" title="Entrez un chiffre, puis appuyez sur [Entrée]" int_input_label="Entez du int ici !">
+        <imgui x="0" y="380" name="imgui" width="350" height="100" title="Entrez un chiffre, puis appuyez sur [Entrée]" int_input_label="Entez du int ici !">
             Niveau 3
         </imgui>
     </level>

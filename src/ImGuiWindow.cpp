@@ -37,7 +37,7 @@ void ImGuiWindow::render(sf::RenderWindow &window) {
 	ImGui::Begin(title.c_str());
 
 	ImGui::SetWindowPos(ImVec2(x, y), NULL);
-	ImGui::SetWindowSize(ImVec2(350, 100), NULL); // À modifier...
+	ImGui::SetWindowSize(ImVec2(width, height), NULL);
 
 	if (inputFloat) { ImGui::InputFloat(titleFloat.c_str(), &f_input); }
 	if (inputInt) { ImGui::InputInt(titleFloat.c_str(), &i_input); }
