@@ -8,6 +8,9 @@ Text::Text(pugi::xml_node const &node) :
 
 	if(!font.loadFromFile(node.attribute("font").as_string())) { std::cout << "Error while loading font.\n"; }
 
+	auto angle = node.attribute("angle");
+	if (angle) { this->angle = angle.as_float(); }
+
 	auto red = node.attribute("r");
 	auto green = node.attribute("g");
 	auto blue = node.attribute("b");
@@ -15,12 +18,9 @@ Text::Text(pugi::xml_node const &node) :
 
 	if (red && green && blue) {
 
-		color = sf::Color(red.as_int(), green.as_int(), blue.as_int());
-
-	}
-	else {
-
-		color = sf::Color();
+		color.r = red.as_int();
+		color.g = green.as_int();
+		color.b = blue.as_int();
 
 	}
 
@@ -31,6 +31,16 @@ Text::Text(pugi::xml_node const &node) :
 
 	content = node.text().as_string();
 
+	text.setString(content);
+	text.setCharacterSize(size);
+	text.setFont(font);
+	text.setFillColor(color);
+	text.setStyle(style);
+	auto boundaries = text.getGlobalBounds();
+	text.setOrigin(boundaries.left + boundaries.width / 2, boundaries.top + boundaries.height / 2);
+	text.setPosition(x, y);
+	text.setRotation(this->angle);
+
 }
 
 Text::Text(const float x, const float y, std::string const& name, std::string const& content, sf::Font const& font, const int characterSize, sf::Color const& color, sf::Text::Style const& style) :
@@ -40,19 +50,27 @@ Text::Text(const float x, const float y, std::string const& name, std::string co
 	size{characterSize},
 	color{color},
 	style{style}
-{}
+{
+
+	text.setString(content);
+	text.setCharacterSize(characterSize);
+	text.setFont(font);
+	text.setFillColor(color);
+	text.setStyle(style);
+	text.setOrigin(x, y);
+	text.setPosition(x, y);
+
+}
 
 void Text::render(sf::RenderWindow &window) {
 
-	sf::Text text;
-
-	text.setPosition(x, y);
-
 	text.setString(content);
-	text.setFont(font);
 	text.setCharacterSize(size);
+	text.setFont(font);
 	text.setFillColor(color);
 	text.setStyle(style);
+	text.setPosition(x, y);
+	text.setRotation(angle);
 
 	window.draw(text);
 
@@ -60,5 +78,5 @@ void Text::render(sf::RenderWindow &window) {
 
 bool Text::contains(const float x, const float y) const
 {
-	return false;
+	return text.getGlobalBounds().contains(x, y);
 }

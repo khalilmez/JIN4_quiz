@@ -28,6 +28,8 @@ public:
 	*/
 	virtual bool contains(const float x, const float y) const;
 
+	void setAngle(const float angle);
+
 protected:
 
 	/* Les coordonnées de l'élément.
@@ -38,6 +40,8 @@ protected:
 	/* Le nom de l'élément.
 	*/
 	std::string name;
+
+	float angle = 0;
 
 };
 

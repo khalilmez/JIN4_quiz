@@ -20,6 +20,8 @@ public:
 
 private:
 
+	sf::Text text;
+
 	/* Le contenu textuel de l'élément.
 	*/
 	std::string content;

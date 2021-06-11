@@ -35,3 +35,9 @@ std::string Element::getName() const {
 	return name;
 
 }
+
+void Element::setAngle(const float angle) {
+
+	this->angle = angle;
+
+}

@@ -24,6 +24,9 @@ public:
 	sf::Color getColor() const;
 
 private:
+
+	sf::RectangleShape rectangle;
+
 	/* La couleur du cercle.
 	*/
 	sf::Color color;

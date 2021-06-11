@@ -4,21 +4,26 @@
 void Level2EventHandler::handle(Screen& screen, sf::Event const &event, sf::RenderWindow const &window) {
 
 	/* Gestion des événements utilisateur du niveau 2 ici. */
+    Element* element;
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-        screen.getElement(2)->setX(sf::Mouse::getPosition(window).x);
-        screen.getElement(2)->setY(sf::Mouse::getPosition(window).y);
+        for (int k = 0; k < screen.getNumberOfElements(); k++) {
 
-        if (screen.getElement(2)->getX() < 0 || screen.getElement(2)->getX() > (window.getSize().x - 95)) {
+            element = screen.getElement(k);
 
-            screen.setCompleted(true);
-            std::cout << "YES\n";
+            if (element->contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y) && element->getName() != "background") {
 
-        }
-        if (screen.getElement(2)->getY() < 0 || screen.getElement(2)->getY() > (window.getSize().y - 95)) {
+                element->setX(sf::Mouse::getPosition(window).x);
+                element->setY(sf::Mouse::getPosition(window).y);
 
-            screen.setCompleted(true);
-            std::cout << "YES\n";
+                if (element->getName() == "Rectangle" && (element->getX() < 0 || element->getX() > window.getSize().x || element->getY() < 0 || element->getY() > window.getSize().y)) {
+
+                    screen.setCompleted(true);
+
+                }
+
+            }
 
         }
 

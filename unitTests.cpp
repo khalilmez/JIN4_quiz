@@ -55,7 +55,7 @@ TEST(TestClassRectangle, TestRectangle) {
 
 TEST(TestClassSprite, SpriteTest) {
 
-	auto sprite = std::make_unique<Sprite>(4, 5, "spriteTest", "resources/stripes.png", NULL);
+	auto sprite = std::make_unique<Sprite>(4, 5, "spriteTest", "resources/stripes.png", sf::Color());
 	/*Test sur la classe Sprite */
 	EXPECT_EQ("spriteTest", sprite->getName());
 	EXPECT_EQ(4, sprite->getX());
@@ -95,9 +95,9 @@ TEST(TestScreenClass, TestScreen) {
 		sf::Color()
 		);
 
-	winScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png", NULL)));
-	winScreen->addElement(std::move(std::make_unique<Sprite>(160, 10, "text", "resources/win.png", NULL)));
-	winScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/next.png", NULL)));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png", sf::Color())));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(160, 10, "text", "resources/win.png", sf::Color())));
+	winScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/next.png", sf::Color())));
 
 	EXPECT_EQ(3, winScreen->getNumberOfElements());
 	EXPECT_EQ("button", winScreen->getElement(2)->getName());

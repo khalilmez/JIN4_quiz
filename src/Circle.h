@@ -31,6 +31,8 @@ public:
 
 private:
 
+	sf::CircleShape circle;
+
 	/* La couleur du cercle.
 	*/
 	sf::Color color;

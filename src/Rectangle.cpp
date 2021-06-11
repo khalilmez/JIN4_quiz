@@ -7,6 +7,9 @@ Rectangle::Rectangle(pugi::xml_node const &node) :
 	height{ node.attribute("height").as_float() }
 {
 
+	auto angle = node.attribute("angle");
+	if (angle) { this->angle = angle.as_float(); }
+
 	auto red = node.attribute("r");
 	auto green = node.attribute("g");
 	auto blue = node.attribute("b");
@@ -14,16 +17,20 @@ Rectangle::Rectangle(pugi::xml_node const &node) :
 
 	if (red && green && blue) {
 
-		color = sf::Color(red.as_int(), green.as_int(), blue.as_int());
-
-	}
-	else {
-
-		color = sf::Color();
+		color.r = red.as_int();
+		color.g = green.as_int();
+		color.b = blue.as_int();
 
 	}
 
 	if (alpha) { color.a = alpha.as_int(); }
+
+	rectangle.setSize(sf::Vector2f(width, height));
+	auto boundaries = rectangle.getGlobalBounds();
+	rectangle.setOrigin(boundaries.left + boundaries.width / 2, boundaries.top + boundaries.height / 2);
+	rectangle.setPosition(x, y);
+	rectangle.setFillColor(color);
+	rectangle.setRotation(this->angle);
 
 }
 
@@ -32,22 +39,36 @@ Rectangle::Rectangle(const float x, const float y, std::string const &name, cons
 	color{ color },
 	width{ width },
 	height{ height }
-{}
+{
 
-void Rectangle::render(sf::RenderWindow &window) {
-	sf::RectangleShape rectangle;
 	rectangle.setSize(sf::Vector2f(width, height));
-	rectangle.setFillColor(color);
+	rectangle.setOrigin(x, y);
 	rectangle.setPosition(x, y);
-	window.draw(rectangle);
+	rectangle.setFillColor(color);
+
 }
 
-bool Rectangle::contains(const float x_mouse, const float y_mouse) const
+void Rectangle::render(sf::RenderWindow &window) {
+
+	rectangle.setSize(sf::Vector2f(width, height));
+	rectangle.setPosition(x, y);
+	rectangle.setFillColor(color);
+	rectangle.setRotation(angle);
+
+	window.draw(rectangle);
+
+}
+
+bool Rectangle::contains(const float x, const float y) const
 {
-	if (x_mouse >= x && x_mouse <= (x + width) && y_mouse >= y && y_mouse <= (y + height)) {
+	if (this->x - x <= width / 2 && x - this->x <= width / 2 && this->y - y <= height / 2 && y - this->y <= height / 2) {
+
 		return true;
+
 	}
+
 	return false;
+
 }
 
 sf::Color Rectangle::getColor() const

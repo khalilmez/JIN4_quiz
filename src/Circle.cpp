@@ -6,6 +6,9 @@ Circle::Circle(pugi::xml_node const &node) :
 	radius{ node.attribute("radius").as_float() }
 {
 
+	auto angle = node.attribute("angle");
+	if (angle) { this->angle = angle.as_float(); }
+
 	auto red = node.attribute("r");
 	auto green = node.attribute("g");
 	auto blue = node.attribute("b");
@@ -13,12 +16,9 @@ Circle::Circle(pugi::xml_node const &node) :
 
 	if (red && green && blue) {
 
-		color = sf::Color(red.as_int(), green.as_int(), blue.as_int());
-
-	}
-	else {
-
-		color = sf::Color();
+		color.r = red.as_int();
+		color.g = green.as_int();
+		color.b = blue.as_int();
 
 	}
 
@@ -26,8 +26,16 @@ Circle::Circle(pugi::xml_node const &node) :
 
 	auto temp = node.attribute("nb_sides");
 
-	if (temp) { sides = temp.as_int(); }
+	if (temp && temp.as_int() > 0) { sides = temp.as_int(); }
 	else { sides = 300; }
+
+	circle.setRadius(radius);
+	circle.setPointCount(sides);
+	circle.setFillColor(color);
+	auto boundaries = circle.getGlobalBounds();
+	circle.setOrigin(boundaries.left + boundaries.width / 2, boundaries.top + boundaries.height / 2);
+	circle.setPosition(x, y);
+	circle.setRotation(this->angle);
 
 }
 
@@ -36,37 +44,44 @@ Circle::Circle(const float x, const float y, std::string const &name, const floa
 	color(color),
 	radius(radius),
 	sides(numberOfSides)
-{}
+{
+
+	circle.setRadius(radius);
+	circle.setPointCount(numberOfSides);
+	circle.setFillColor(color);
+	circle.setOrigin(x, y);
+	circle.setPosition(x, y);
+
+}
 
 Circle::Circle(const float x, const float y, std::string const &name, const float radius, sf::Color const &color) :
 	Element(x, y, name),
 	color(color),
 	radius(radius)
-{}
+{
 
-void Circle::render(sf::RenderWindow& window) {
-
-	if(sides <= 1) {
-
-		sf::CircleShape circle(radius);
-		circle.setFillColor(color);
-		circle.setPosition(x, y);
-		window.draw(circle);
-	}
-	else {
-
-		sf::CircleShape circle(radius, sides);
-		circle.setFillColor(color);
-		circle.setPosition(x, y);
-		window.draw(circle);
-
-	}
+	circle.setRadius(radius);
+	circle.setFillColor(color);
+	circle.setOrigin(x, y);
+	circle.setPosition(x, y);
 
 }
 
-bool Circle::contains(const float x_mouse, const float y_mouse) const {
+void Circle::render(sf::RenderWindow& window) {
 
-	if (x_mouse >= x && x_mouse <= (x + 2 * radius) && y_mouse >= y && y_mouse <= (y + 2 * radius)) {
+	circle.setRadius(radius);
+	circle.setPointCount(sides);
+	circle.setFillColor(color);
+	circle.setPosition(x, y);
+	circle.setRotation(angle);
+
+	window.draw(circle);
+
+}
+
+bool Circle::contains(const float x, const float y) const {
+
+	if ((this->x - x) * (this->x - x) + (this->y - y) * (this->y - y) <= radius * radius) {
 
 		return true;
 

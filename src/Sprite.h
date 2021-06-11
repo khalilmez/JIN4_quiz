@@ -15,12 +15,14 @@ public:
 
 	bool contains(const float x, const float y) const override;
 
-private:
-
-	sf::Texture texture;
+	void Sprite::setColor(sf::Color const &color);
 
 	sf::Sprite sprite;
 
 	sf::Color color;
+
+private:
+
+	sf::Texture texture;
 
 };

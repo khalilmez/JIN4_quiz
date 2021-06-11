@@ -5,7 +5,7 @@
 
 Screen* Level2UpdateStrategy::update(Screen &screen) {
 
-	/* Vérifier la condition de victoire du niveau 1 ici. */
+	/* Vérifier la condition de victoire du niveau 2 ici. */
 	if (screen.isCompleted() ) {
 
 		/* Autres choses ici, si besoin  */
