@@ -1,5 +1,9 @@
 #include "Text.h"
 #include <iostream>
+#include "LoseOnClickHandleEvent.h"
+#include "MovableHandleEvent.h"
+#include "WinOnClickHandleEvent.h"
+#include "CutToWinOnClickHandleEvent.h"
 
 Text::Text(pugi::xml_node const &node) :
 	Element{ node.attribute("x").as_float(), node.attribute("y").as_float(), node.attribute("name").as_string() },
@@ -15,7 +19,36 @@ Text::Text(pugi::xml_node const &node) :
 	auto green = node.attribute("g");
 	auto blue = node.attribute("b");
 	auto alpha = node.attribute("a");
+	std::string handle = node.attribute("handle_strategy").as_string();
+	std::vector<std::string> handles;
+	std::string temp1 = "";
+	for (int i = 0; i < handle.length(); ++i) {
+		if (handle[i] == ' ') {
+			handles.push_back(temp1);
+			temp1 = "";
+		}
+		else {
+			temp1.push_back(handle[i]);
+		}
 
+	}
+	if (temp1 != " ")
+		handles.push_back(temp1);
+
+	for (auto& st : handles) {
+		if (st == "movable") {
+			eventHandler.push_back(std::move(std::make_shared<MovableHandleEvent>()));
+		}
+		if (st == "WinOnClick") {
+			eventHandler.push_back(std::move(std::make_shared<WinOnClickHandleEvent>()));
+		}
+		if (st == "LoseOnClick") {
+			eventHandler.push_back(std::move(std::make_shared<LoseOnClickHandleEvent>()));
+		}	
+		if (st == "CutToWin") {
+			eventHandler.push_back(std::move(std::make_shared<CutToWinOnClickHandleEvent>()));
+		}
+	}
 	if (red && green && blue) {
 
 		color.r = red.as_int();

@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <string>
+#include <vector>
+#include "EventHandler.h"
 
 class Element {
 
@@ -8,6 +10,7 @@ public:
 
 	explicit Element(const float x, const float y, std::string const &name);
 	virtual ~Element() = default;
+	std::vector<std::shared_ptr<EventHandler>> eventHandler;
 
 	float getX() const;
 	float getY() const;
@@ -30,6 +33,8 @@ public:
 
 	void setAngle(const float angle);
 
+	std::vector<std::shared_ptr<EventHandler>> getEventHandler() const;
+
 protected:
 
 	/* Les coordonnées de l'élément.
@@ -42,6 +47,11 @@ protected:
 	std::string name;
 
 	float angle = 0;
+
+	/* Le gestionnaire d'événements utilisateur à
+	utiliser pour l'écran
+	(cf. Screen::handleEvent(...)).
+	*/
 
 };
 

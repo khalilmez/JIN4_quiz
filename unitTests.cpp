@@ -6,15 +6,12 @@
 #include "EventHandler.h"
 #include "Text.h"
 #include <iostream>
-#include "Level1EventHandler.h"
 #include "Level1UpdateStrategy.h"
-#include "Level2EventHandler.h"
 #include "Level2UpdateStrategy.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "ImGuiWindowBuilder.h"
 #include "ImGuiWindow.h"
-#include "WinLoseEventHandler.h"
 #include "WinLoseUpdateStrategy.h"
 #include "Sprite.h"
 
@@ -88,62 +85,13 @@ TEST(TestClassText, TestText) {
 TEST(TestScreenClass, TestScreen) {
 	Game game;
 	game.init();
-	auto winScreen = std::make_unique<Screen>(
-		&game,
-		std::move(std::make_unique<WinLoseEventHandler>()),
-		std::move(std::make_unique<WinLoseUpdateStrategy>()),
-		sf::Color()
-		);
 
-	winScreen->addElement(std::move(std::make_unique<Sprite>(0, 0, "background", "resources/stripes.png", sf::Color())));
-	winScreen->addElement(std::move(std::make_unique<Sprite>(160, 10, "text", "resources/win.png", sf::Color())));
-	winScreen->addElement(std::move(std::make_unique<Sprite>(260, 280, "button", "resources/next.png", sf::Color())));
-
-	EXPECT_EQ(3, winScreen->getNumberOfElements());
-	EXPECT_EQ("button", winScreen->getElement(2)->getName());
-	EXPECT_EQ("text", winScreen->getElement(1)->getName());
-
-	EXPECT_EQ(0, winScreen->getElement(0)->getX());
-	EXPECT_EQ(0, winScreen->getElement(0)->getY());
-
-	EXPECT_EQ(false, winScreen->isCompleted());
-
-	winScreen->setCompleted(true);
-	EXPECT_EQ(true, winScreen->isCompleted());
-
-	EXPECT_EQ(false, winScreen->isFailed());
-
-	winScreen->setFailed(true);
-	EXPECT_EQ(true, winScreen->isFailed());
 
 }
 
 TEST(TestLevel1, TestLevel) {
 	Game game;
 	game.init();
-	auto level1 = std::make_unique<Screen>(
-		&game,
-		std::move(std::make_unique<Level1EventHandler>()),
-		std::move(std::make_unique<Level1UpdateStrategy>()),
-		sf::Color()
-		);
-
-	sf::Font font;
-	if (!font.loadFromFile("resources/Bernadette.ttf")) {
-		std::cout << "Impossible de charger la police d'écriture." << std::endl;
-	}
-
-	sf::RenderWindow window;
-	level1->addElement(std::move(std::make_unique<Text>(10, 10, "goal", "Trouvez la forme avec le plus de faces.", font, 53, sf::Color(200, 200, 200), sf::Text::Bold)));
-	level1->addElement(std::move(std::make_unique<Circle>(30, 80, "Circle", 50, sf::Color::Magenta)));
-	level1->addElement(std::move(std::make_unique<Rectangle>(WIDTH - 100, 100, "Rectangle", 50, 100, sf::Color::Yellow)));
-	level1->addElement(std::move(std::make_unique<Circle>(WIDTH - 100, 280, "Triangle", 50, sf::Color::Red, 3)));
-	level1->addElement(std::move(std::make_unique<Circle>(30, 280, "Octogone", 50, sf::Color::Red, 8)));
-
-	EXPECT_EQ(5, level1->getNumberOfElements());
-
-	EXPECT_EQ("Circle", level1->getElement(1)->getName());
-	EXPECT_EQ("Octogone", level1->getElement(4)->getName());
 
 }
 

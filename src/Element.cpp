@@ -1,10 +1,12 @@
 #include "Element.h"
-
+#include "MovableHandleEvent.h"
 Element::Element(const float x, const float y, const std::string &name) :
 	x{ x },
 	y{ y },
 	name{ name }
-{}
+{
+
+}
 
 float Element::getX() const {
 	return x;
@@ -40,4 +42,9 @@ void Element::setAngle(const float angle) {
 
 	this->angle = angle;
 
+}
+
+std::vector<std::shared_ptr<EventHandler>> Element::getEventHandler() const
+{
+	return eventHandler;
 }

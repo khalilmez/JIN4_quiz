@@ -2,10 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include "Element.h"
 #include <pugixml.hpp>
+#include <vector>
 
 class Game;
 class UpdateStrategy;
-class EventHandler;
 
 class Screen {
 
@@ -13,7 +13,7 @@ public:
 
 	explicit Screen(Game* game, pugi::xml_node const &node);
 
-	Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor);
+	Screen(Game* game, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor);
 
 	/* Affiche l'écran.
 	Cette méthode appelle successivement les méthodes
@@ -89,12 +89,6 @@ private:
 	*/
 	std::vector<std::unique_ptr<Element>> elements;
 
-	/* Le gestionnaire d'événements utilisateur à
-	utiliser pour l'écran
-	(cf. Screen::handleEvent(...)).
-	*/
-	std::unique_ptr<EventHandler> eventHandler;
-
 	/* La stratégie de mise-à-jour spontanée de
 	l'écran
 	(cf. Screen::update()).
@@ -104,6 +98,7 @@ private:
 	/* La couleur de fond de l'écran.
 	*/
 	sf::Color backgroundColor;
+
 
 };
 

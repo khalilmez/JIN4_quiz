@@ -6,13 +6,9 @@
 #include "Sprite.h"
 #include "Rectangle.h"
 #include "Circle.h"
-#include "WinLoseEventHandler.h"
 #include "WinLoseUpdateStrategy.h"
-#include "Level1EventHandler.h"
 #include "Level1UpdateStrategy.h"
-#include "Level2EventHandler.h"
 #include "Level2UpdateStrategy.h"
-#include "Level3EventHandler.h"
 #include "Level3UpdateStrategy.h"
 #include "ImGuiWindowBuilder.h"
 #include "ImGuiWindow.h"
@@ -24,7 +20,6 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 	auto red = node.attribute("r");
 	auto green = node.attribute("g");
 	auto blue = node.attribute("b");
-
 	if (red && green && blue) {
 
 		backgroundColor = sf::Color(red.as_int(), green.as_int(), blue.as_int());
@@ -36,27 +31,6 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 
 	}
 
-	if (!strcmp(node.attribute("event_handler").as_string(), "win_lose")) {
-
-		eventHandler = std::move(std::make_unique<WinLoseEventHandler>());
-
-	}
-	else if (!strcmp(node.attribute("event_handler").as_string(), "level1")) {
-
-		eventHandler = std::move(std::make_unique<Level1EventHandler>());
-
-	}
-	else if (!strcmp(node.attribute("event_handler").as_string(), "level2")) {
-
-		eventHandler = std::move(std::make_unique<Level2EventHandler>());
-
-	}
-	else if (!strcmp(node.attribute("event_handler").as_string(), "level3")) {
-
-		eventHandler = std::move(std::make_unique<Level3EventHandler>());
-
-	}
-	else { eventHandler = nullptr; }
 
 	if (!strcmp(node.attribute("update_strategy").as_string(), "win_lose")) {
 
@@ -77,7 +51,7 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 
 		updateStrategy = std::move(std::make_unique<Level3UpdateStrategy>());
 	}
-	else { eventHandler = nullptr; }
+	else { updateStrategy = nullptr; }
 
 	for (auto& child : node.children()) {
 
@@ -135,12 +109,10 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 
 }
 
-Screen::Screen(Game* game, std::unique_ptr<EventHandler> eventHandler, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor) :
+Screen::Screen(Game* game, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor) :
 	game{ game },
 	backgroundColor{ backgroundColor }
 {
-
-	this->eventHandler = std::move(eventHandler);
 	this->updateStrategy = std::move(updateStrategy);
 
 }
@@ -160,8 +132,14 @@ void Screen::render(sf::RenderWindow& window) const {
 }
 
 void Screen::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
+	
+	for (auto& element : elements) {
+		std::vector<std::shared_ptr<EventHandler>> vect = element->getEventHandler();
+		for (auto& eventHandler : vect) {
+			eventHandler->handle(std::move(element),*this, event, window);
 
-	eventHandler->handle(*this, event, window);
+		}
+	}
 
 }
 
