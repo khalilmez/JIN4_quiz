@@ -40,6 +40,8 @@ public:
 	*/
 	void nextLevel();
 
+	bool hasNextLevel() const;
+
 private:
 
 	/* Les menus du jeu.

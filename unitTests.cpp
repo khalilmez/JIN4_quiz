@@ -6,11 +6,8 @@
 #include "EventHandler.h"
 #include "Text.h"
 #include <iostream>
-#include "Level1UpdateStrategy.h"
-#include "Level2UpdateStrategy.h"
 #include "Circle.h"
 #include "Rectangle.h"
-#include "ImGuiWindowBuilder.h"
 #include "ImGuiWindow.h"
 #include "WinLoseUpdateStrategy.h"
 #include "Sprite.h"
@@ -59,16 +56,7 @@ TEST(TestClassSprite, SpriteTest) {
 	EXPECT_EQ(5, sprite->getY());
 }
 TEST(TestClassImGuiWindow, TestImGuiWindow) {
-	ImGuiWindowBuilder builder;
-
-	/*Test de la classe qui va gérer le ImGui au sein de notre jeu */
-	ImGuiWindow imgui = builder.withTitle("ImguiTest")->withContent("TestContent")->withInputInt("TestInt")->build();
 	
-	EXPECT_EQ("ImguiTest", imgui.getTitle());
-	EXPECT_EQ("TestContent", imgui.getContent());
-	EXPECT_EQ("TestInt", imgui.getTitleInt());
-	EXPECT_EQ(true, imgui.hasInt());
-	EXPECT_EQ(false, imgui.hasFloat());
 }
 TEST(TestClassText, TestText) {
 

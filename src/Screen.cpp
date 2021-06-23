@@ -7,11 +7,8 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "WinLoseUpdateStrategy.h"
-#include "Level1UpdateStrategy.h"
-#include "Level2UpdateStrategy.h"
-#include "Level3UpdateStrategy.h"
-#include "ImGuiWindowBuilder.h"
 #include "ImGuiWindow.h"
+#include "LevelUpdate.h"
 
 Screen::Screen(Game* game, pugi::xml_node const &node) :
 	game{game}
@@ -37,19 +34,10 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 		updateStrategy = std::move(std::make_unique<WinLoseUpdateStrategy>());
 
 	}
-	else if (!strcmp(node.attribute("update_strategy").as_string(), "level1")) {
+	else if (!strcmp(node.attribute("update_strategy").as_string(), "levelSimple")) {
 
-		updateStrategy = std::move(std::make_unique<Level1UpdateStrategy>());
+		updateStrategy = std::move(std::make_unique<LevelUpdate>());
 
-	}
-	else if (!strcmp(node.attribute("update_strategy").as_string(), "level2")) {
-
-		updateStrategy = std::move(std::make_unique<Level2UpdateStrategy>());
-
-	}
-	else if (!strcmp(node.attribute("update_strategy").as_string(), "level3")) {
-
-		updateStrategy = std::move(std::make_unique<Level3UpdateStrategy>());
 	}
 	else { updateStrategy = nullptr; }
 
@@ -77,23 +65,7 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 		}
 		else if (!strcmp(child.name(), "imgui")) {
 
-			ImGuiWindowBuilder builder;
-
-			auto ptr = builder.withTitle(child.attribute("title").as_string())->withContent(child.text().as_string());
-
-			auto floatInput = child.attribute("float_input_label");
-			auto intInput = child.attribute("int_input_label");
-			auto textInput = child.attribute("text_input_label");
-			auto button = child.attribute("button_label");
-			auto menu = child.attribute("menu");
-
-			if (floatInput) { ptr->withInputFloat(floatInput.as_string()); }
-			if (intInput) { ptr->withInputInt(intInput.as_string()); }
-			if (textInput) { ptr->withInputText(textInput.as_string()); }
-			if (button) { ptr->withButton(button.as_string()); }
-			if (menu && !strcmp(menu.as_string(), "true")) { ptr->withMenu(); }
-
-			auto window = ptr->build();
+			auto window = ImGuiWindow(child.attribute("title").as_string());
 
 			window.setX(child.attribute("x").as_float());
 			window.setY(child.attribute("y").as_float());
@@ -101,8 +73,15 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 			window.setWidth(child.attribute("width").as_float());
 			window.setHeight(child.attribute("height").as_float());
 
+			for (pugi::xml_node tool = child.child("int"); tool; tool = tool.next_sibling("int"))
+			{
+				window.addInputInt(tool.attribute("title").as_string(), tool.attribute("expected").as_int());
+			}
+			for (pugi::xml_node tool = child.child("float"); tool; tool = tool.next_sibling("int"))
+			{
+				window.addInputFloat(tool.attribute("title").as_string(), tool.attribute("expected").as_float());
+			}
 			addElement(std::move(std::make_unique<ImGuiWindow>(window)));
-
 		}
 
 	}

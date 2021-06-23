@@ -10,7 +10,6 @@ public:
 
 	explicit Element(const float x, const float y, std::string const &name);
 	virtual ~Element() = default;
-	std::vector<std::shared_ptr<EventHandler>> eventHandler;
 
 	float getX() const;
 	float getY() const;
@@ -24,6 +23,8 @@ public:
 	/* Affiche l'élément.
 	*/
 	virtual void render(sf::RenderWindow& window) = 0;
+
+	virtual bool verify() = 0;
 
 	/* Permet de savoir si le point de coordonnées
 	(x, y, z) se trouve dans l'élément.
@@ -52,6 +53,7 @@ protected:
 	utiliser pour l'écran
 	(cf. Screen::handleEvent(...)).
 	*/
+	std::vector<std::shared_ptr<EventHandler>> eventHandler;
 
 };
 

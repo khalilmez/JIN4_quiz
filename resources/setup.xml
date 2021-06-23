@@ -17,15 +17,15 @@
         <text x="320" y="40" name="goal" font="resources/Bernadette.ttf" size="33" style="bold" r="10" g="10" b="10">Attendez nous pour de nouveaux niveaux !</text>
 	    <sprite x="320" y="250" name="text" file="resources/goodbye.png"/>    
     </menu>
-    <level update_strategy="level1" r="0" g="0" b="0">
-        <sprite x="320" y="240" name="background" file="resources/paper.png"/>
-        <text x="320" y="60" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="10" g="10" b="10">Trouvez la forme avec le plus de faces !</text>
-        <circle x="160" y="170" name="Circle" handle_strategy="WinOnClick" radius="60" r="255" g="0" b="255"/>
-        <rectangle x="400" y="200" name="Rectangle" handle_strategy="LoseOnClick" width="80" height="110" r="255" g="255" b="0"/>
-        <circle x="160" y="350" name="Triangle" handle_strategy="LoseOnClick" radius="100" nb_sides="3" r="255" g="0" b="0"/>
-        <circle x="500" y="350" name="octogone" handle_strategy="LoseOnClick" radius="90" nb_sides="8" r="255" g="0" b="255"/>
-    </level>
-    <level update_strategy="level2" r="0" g="0" b="0">
+
+	<level update_strategy="levelSimple" r="0" g="0" b="50">
+		<sprite x="320" y="240" name="background" handle_strategy="LoseOnClick" file="resources/Image.png"/>
+		<text x="300" y="40" name="goal" font="resources/Bernadette.ttf" size="40" style="bold" r="255" g="255" b="255">
+			Trouvez la souris
+		</text>
+		<sprite x="180" y="320" name="background" handle_strategy="WinOnClick" file="resources/souris.png"/>
+	</level>
+    <level update_strategy="levelSimple" r="0" g="0" b="0">
         <sprite x="320" y="240" name="background" file="resources/paper.png"/>
         <text x="320" y="60" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="10" g="10" b="10">Formez un rectangle !</text>
         <rectangle x="250" y="250" name="Rectangle" handle_strategy="movable CutToWin" width="100" height="100" r="255" g="255" b="0"/>
@@ -36,15 +36,25 @@
         </imgui>
         -->
     </level>
-    <level update_strategy="level3" r="0" g="0" b="0">
+    <level update_strategy="levelSimple" r="0" g="0" b="0">
         <sprite x="320" y="240" name="background" file="resources/paper.png"/>
         <text x="200" y="140" name="goal" font="resources/Bernadette.ttf" size="40" style="bold" r="10" g="10" b="10">Sur quel nombre l'aiguille 
 des heures pointera-t-elle 
 dans 31 heures ?
         </text>
 	    <sprite x="500" y="290" name="text" file="resources/clock.png"/>
-        <imgui x="0" y="380" name="imgui" width="350" height="100" title="Entrez un chiffre, puis appuyez sur [Entrée]" int_input_label="Entez du int ici !">
-            Niveau 3
+        <imgui x="0" y="380" name="imgui" handle_strategy="imgui" width="500" title="Entrez un chiffre, puis appuyez sur [Entrée]" height="100" >
+<int title="Entrez ici le chiffre" expected="9"/>
+	Niveau 3
         </imgui>
     </level>
+	<level update_strategy="levelSimple" r="0" g="0" b="0">
+		<sprite x="320" y="240" name="background" file="resources/paper.png"/>
+		<text x="320" y="60" name="goal" font="resources/Bernadette.ttf" size="53" style="bold" r="10" g="10" b="10">Trouvez la forme avec le plus de faces !</text>
+		<circle x="160" y="170" name="Circle" handle_strategy="WinOnClick" radius="60" r="255" g="0" b="255"/>
+		<rectangle x="400" y="200" name="Rectangle" handle_strategy="LoseOnClick" width="80" height="110" r="255" g="255" b="0"/>
+		<circle x="160" y="350" name="Triangle" handle_strategy="LoseOnClick" radius="100" nb_sides="3" r="255" g="0" b="0"/>
+		<circle x="500" y="350" name="octogone" handle_strategy="LoseOnClick" radius="90" nb_sides="8" r="255" g="0" b="255"/>
+	</level>
+
 </game>

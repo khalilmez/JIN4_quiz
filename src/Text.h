@@ -16,6 +16,8 @@ public:
 
 	void render(sf::RenderWindow& window) override;
 
+	bool verify() override { return false; };
+
 	bool contains(const float x, const float y) const override;
 
 private:

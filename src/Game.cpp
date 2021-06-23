@@ -89,3 +89,10 @@ void Game::nextLevel() {
 	currentLevel++;
 
 }
+
+bool Game::hasNextLevel() const
+{
+	return (currentLevel < levels.size());
+}
+
+

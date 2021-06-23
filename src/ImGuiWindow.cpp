@@ -2,28 +2,20 @@
 #include "imgui-SFML.h"
 #include <iostream>
 #include "imgui.h"
+#include "SFML/Graphics.hpp"
+#include "ImguiHandleEvent.h"
 
-ImGuiWindow::ImGuiWindow(std::string const& title, std::string const& content, const bool inputFloat, std::string const& titleFloat, const bool inputInt, std::string const& titleInt, const bool inputText, std::string const& titleText, const bool button, std::string const& buttonTitle, const bool menu) :
-	Element{ 0,0,"ImGuiWindow" },
-	inputFloat{ inputFloat },
-	inputInt{ inputInt },
-	inputText{ inputText },
-	button{ button },
-	menu{ menu },
-	title{ title },
-	content{ content },
-	titleFloat{ titleFloat },
-	titleInt{ titleInt },
-	titleText{ titleText },
-	buttonTitle{ buttonTitle }
-{}
+ImGuiWindow::ImGuiWindow(std::string const& title) : Element(0,0,"ImGuiWindow")
+{
+	eventHandler.push_back(std::move(std::make_shared<ImguiHandleEvent>()));
+	widgetsTitle.push_back(std::move(std::make_shared<ImguiElementTitle>(title)));
+}
 
 void ImGuiWindow::init(sf::RenderWindow &window, std::string const& title, std::string const& content) {
 
 	ImGui::SFML::Init(window);
 
 	this->title = title;
-	this->content = content;
 
 	sf::Font font;
 
@@ -34,53 +26,36 @@ void ImGuiWindow::init(sf::RenderWindow &window, std::string const& title, std::
 void ImGuiWindow::render(sf::RenderWindow &window) {
 
 	ImGui::SFML::Update(window, deltaClock.restart());
-	ImGui::Begin(title.c_str());
+	if (widgetsTitle.size() > 0) {
+		ImGui::Begin(widgetsTitle[0]->getTitle().c_str());
+	}
+	else {
+		ImGui::Begin("Error loading Title");
+	}
 
 	ImGui::SetWindowPos(ImVec2(x, y), NULL);
 	ImGui::SetWindowSize(ImVec2(width, height), NULL);
 
-	if (inputFloat) { ImGui::InputFloat(titleFloat.c_str(), &f_input); }
-	if (inputInt) { ImGui::InputInt(titleFloat.c_str(), &i_input); }
-	if (inputText) { ImGui::InputText(titleText.c_str(), reponseText, IM_ARRAYSIZE(reponseText)); }
-	if (button) { 
-		ImGui::Button(buttonTitle.c_str());
+	for (auto& widget : widgetsInt) {
+		ImGui::InputInt(widget->getTitle().c_str(), &widget->getRefInt());
 	}
-	
-	ImGui::Text(content.c_str());
+
+	for (auto& widget : widgetsFloat) {
+		ImGui::InputFloat(widget->getTitle().c_str(), &widget->getRefFloat());
+	}
 
 	ImGui::End();
 	ImGui::SFML::Render(window);
-
 }
 
-std::string ImGuiWindow::getTitle() const
+void ImGuiWindow::addInputInt(std::string const& title, int expectedValue)
 {
-	return title;
+	widgetsInt.push_back(std::move(std::make_shared<ImguiElementInputInt>(title, expectedValue)));
 }
 
-std::string ImGuiWindow::getContent() const
+void ImGuiWindow::addInputFloat(std::string const& title, float expectedValue)
 {
-	return content;
-}
-
-bool ImGuiWindow::hasInt() const
-{
-	return inputInt;
-}
-
-std::string ImGuiWindow::getTitleInt() const
-{
-	return titleInt;
-}
-
-bool ImGuiWindow::hasFloat() const
-{
-	return inputFloat;
-}
-
-
-int ImGuiWindow::getInt() const {
-	return i_input;
+	widgetsFloat.push_back(std::move(std::make_shared<ImguiElementInputFloat>(title, expectedValue)));
 }
 
 void ImGuiWindow::setWidth(const float width) {
@@ -93,4 +68,19 @@ void ImGuiWindow::setHeight(const float height) {
 
 	this->height = height;
 
+}
+
+bool ImGuiWindow::verify()
+{
+	for (auto& widget : widgetsInt) {
+		if (!widget->verify()) {
+			return false;
+		}
+	}
+	for (auto& widget : widgetsFloat) {
+		if (!widget->verify()) {
+			return false;
+		}
+	}
+	return true;
 }

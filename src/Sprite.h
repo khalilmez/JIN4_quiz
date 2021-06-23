@@ -17,6 +17,8 @@ public:
 
 	void Sprite::setColor(sf::Color const &color);
 
+	bool verify() override { return false; };
+
 	sf::Sprite sprite;
 
 	sf::Color color;
