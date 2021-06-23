@@ -52,11 +52,8 @@ protected:
 
 	float angle = 0;
 
-	/* Vecteur des gestionnaires d'événements utilisateur à
-	utiliser pour l'écran
-	(cf. Screen::handleEvent(...)).
-	On remarque que un element peut avoir plusieurs eventHandler, 
-	par exemple bouger et doit être coupé pour gagner
+	/* La liste des gestionnaires d'événements utilisateur affectés
+	à l'élément.
 	*/
 	std::vector<std::shared_ptr<EventHandler>> eventHandlers;
 
