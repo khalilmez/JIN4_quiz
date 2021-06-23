@@ -40,6 +40,9 @@ public:
 	*/
 	void nextLevel();
 
+	/*Cette fonction vérifie si on encore un Level 
+	suivant
+	*/
 	bool hasNextLevel() const;
 
 private:

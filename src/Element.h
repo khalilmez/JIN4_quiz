@@ -24,6 +24,9 @@ public:
 	*/
 	virtual void render(sf::RenderWindow& window) = 0;
 
+	/*Cette fonction est utile pour la fenêtre ImGui,
+	* Elle vérifie si chaque input est égale à la valeur attendue
+	*/
 	virtual bool verify() = 0;
 
 	/* Permet de savoir si le point de coordonnées
@@ -34,7 +37,7 @@ public:
 
 	void setAngle(const float angle);
 
-	std::vector<std::shared_ptr<EventHandler>> getEventHandler() const;
+	std::vector<std::shared_ptr<EventHandler>> getEventHandlers() const;
 
 protected:
 
@@ -49,11 +52,13 @@ protected:
 
 	float angle = 0;
 
-	/* Le gestionnaire d'événements utilisateur à
+	/* Vecteur des gestionnaires d'événements utilisateur à
 	utiliser pour l'écran
 	(cf. Screen::handleEvent(...)).
+	On remarque que un element peut avoir plusieurs eventHandler, 
+	par exemple bouger et doit être coupé pour gagner
 	*/
-	std::vector<std::shared_ptr<EventHandler>> eventHandler;
+	std::vector<std::shared_ptr<EventHandler>> eventHandlers;
 
 };
 

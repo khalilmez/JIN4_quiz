@@ -8,7 +8,7 @@
 #include "Circle.h"
 #include "WinLoseUpdateStrategy.h"
 #include "ImGuiWindow.h"
-#include "LevelUpdate.h"
+#include "LevelUpdateStrategy.h"
 
 Screen::Screen(Game* game, pugi::xml_node const &node) :
 	game{game}
@@ -36,7 +36,7 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 	}
 	else if (!strcmp(node.attribute("update_strategy").as_string(), "levelSimple")) {
 
-		updateStrategy = std::move(std::make_unique<LevelUpdate>());
+		updateStrategy = std::move(std::make_unique<LevelUpdateStrategy>());
 
 	}
 	else { updateStrategy = nullptr; }
@@ -88,7 +88,7 @@ Screen::Screen(Game* game, pugi::xml_node const &node) :
 
 }
 
-Screen::Screen(Game* game, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor) :
+Screen::Screen(Game* game, std::unique_ptr<LevelUpdateStrategy> updateStrategy, sf::Color const &backgroundColor) :
 	game{ game },
 	backgroundColor{ backgroundColor }
 {
@@ -113,8 +113,8 @@ void Screen::render(sf::RenderWindow& window) const {
 void Screen::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
 	
 	for (auto& element : elements) {
-		std::vector<std::shared_ptr<EventHandler>> vect = element->getEventHandler();
-		for (auto& eventHandler : vect) {
+		std::vector<std::shared_ptr<EventHandler>> eventHandlers = element->getEventHandlers();
+		for (auto& eventHandler : eventHandlers) {
 			eventHandler->handle(std::move(element),*this, event, window);
 
 		}

@@ -7,7 +7,7 @@
 
 ImGuiWindow::ImGuiWindow(std::string const& title) : Element(0,0,"ImGuiWindow")
 {
-	eventHandler.push_back(std::move(std::make_shared<ImguiHandleEvent>()));
+	eventHandlers.push_back(std::move(std::make_shared<ImguiHandleEvent>()));
 	widgetsTitle.push_back(std::move(std::make_shared<ImguiElementTitle>(title)));
 }
 

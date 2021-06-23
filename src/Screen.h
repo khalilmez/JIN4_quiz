@@ -3,9 +3,10 @@
 #include "Element.h"
 #include <pugixml.hpp>
 #include <vector>
+#include <UpdateStrategy.h>
 
 class Game;
-class UpdateStrategy;
+class LevelUpdateStrategy;
 
 class Screen {
 
@@ -13,7 +14,7 @@ public:
 
 	explicit Screen(Game* game, pugi::xml_node const &node);
 
-	Screen(Game* game, std::unique_ptr<UpdateStrategy> updateStrategy, sf::Color const &backgroundColor);
+	Screen(Game* game, std::unique_ptr<LevelUpdateStrategy> updateStrategy, sf::Color const &backgroundColor);
 
 	/* Affiche l'écran.
 	Cette méthode appelle successivement les méthodes

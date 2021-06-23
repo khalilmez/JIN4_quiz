@@ -37,16 +37,16 @@ Text::Text(pugi::xml_node const &node) :
 
 	for (auto& st : handles) {
 		if (st == "movable") {
-			eventHandler.push_back(std::move(std::make_shared<MovableHandleEvent>()));
+			eventHandlers.push_back(std::move(std::make_shared<MovableHandleEvent>()));
 		}
 		if (st == "WinOnClick") {
-			eventHandler.push_back(std::move(std::make_shared<WinOnClickHandleEvent>()));
+			eventHandlers.push_back(std::move(std::make_shared<WinOnClickHandleEvent>()));
 		}
 		if (st == "LoseOnClick") {
-			eventHandler.push_back(std::move(std::make_shared<LoseOnClickHandleEvent>()));
+			eventHandlers.push_back(std::move(std::make_shared<LoseOnClickHandleEvent>()));
 		}	
 		if (st == "CutToWin") {
-			eventHandler.push_back(std::move(std::make_shared<CutToWinOnClickHandleEvent>()));
+			eventHandlers.push_back(std::move(std::make_shared<CutToWinOnClickHandleEvent>()));
 		}
 	}
 	if (red && green && blue) {

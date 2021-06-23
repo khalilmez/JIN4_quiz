@@ -8,12 +8,12 @@ title{ newTitle }
 
 float& ImguiElementInputFloat::getRefFloat()
 {
-    return result;
+    return input;
 }
 
 
-float ImguiElementInputFloat::getResult() const {
-    return result;
+float ImguiElementInputFloat::getInput() const {
+    return input;
 }
 
 std::string ImguiElementInputFloat::getTitle() const {
@@ -22,7 +22,7 @@ std::string ImguiElementInputFloat::getTitle() const {
 
 bool ImguiElementInputFloat::verify() const
 {
-    return result==expected;
+    return input==expected;
 }
 
 void ImguiElementInputFloat::setTitle(std::string const& newTitle) {

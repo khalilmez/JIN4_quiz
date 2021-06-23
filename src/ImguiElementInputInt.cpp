@@ -8,12 +8,12 @@ title{ newTitle }
 
 int& ImguiElementInputInt::getRefInt()
 {
-    return result;
+    return input;
 }
 
 
-int ImguiElementInputInt::getResult() const {
-    return result;
+int ImguiElementInputInt::getInput() const {
+    return input;
 }
 
 std::string ImguiElementInputInt::getTitle() const {
@@ -22,7 +22,7 @@ std::string ImguiElementInputInt::getTitle() const {
 
 bool ImguiElementInputInt::verify() const
 {
-    return result==expected;
+    return input==expected;
 }
 
 void ImguiElementInputInt::setTitle(std::string const& newTitle) {

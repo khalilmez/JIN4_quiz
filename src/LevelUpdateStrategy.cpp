@@ -1,9 +1,9 @@
-#include "LevelUpdate.h"
+#include "LevelUpdateStrategy.h"
 #include "Screen.h"
 #include "Game.h"
 #include "Menu.h"
 
-Screen* LevelUpdate::update(Screen &screen) {
+Screen* LevelUpdateStrategy::update(Screen &screen) {
 
 	/* Vérifier la condition de victoire du niveau 2 ici. */
 	if (screen.isCompleted() ) {

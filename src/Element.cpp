@@ -44,7 +44,7 @@ void Element::setAngle(const float angle) {
 
 }
 
-std::vector<std::shared_ptr<EventHandler>> Element::getEventHandler() const
+std::vector<std::shared_ptr<EventHandler>> Element::getEventHandlers() const
 {
-	return eventHandler;
+	return eventHandlers;
 }
